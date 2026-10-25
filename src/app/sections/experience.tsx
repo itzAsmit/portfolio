@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { gsap, ScrollTrigger, useGSAP, motionOk } from '@/lib/gsap'
 import { experience, toolkit } from '@/lib/content'
+import { cn } from '@/lib/utils'
 
 export function Experience() {
   const root = useRef<HTMLElement>(null)
@@ -42,18 +43,30 @@ export function Experience() {
   }, { scope: root })
 
   return (
-    <section ref={root} id="experience" aria-labelledby="experience-title" className="overflow-hidden py-[clamp(6rem,16vh,11rem)]">
-      <div className="grid gap-10 px-5 md:grid-cols-12 md:px-10">
-        <div className="md:col-span-4">
-          <h2 id="experience-title" className="display text-[clamp(2.75rem,5.4vw,5.75rem)]">Experience</h2>
-          <p className="mt-5 max-w-[30ch] text-[17px] leading-relaxed text-muted-foreground">I build technical experience through community leadership, outreach, events, hackathons, and constant hands-on learning.</p>
+    <section ref={root} id="experience" aria-labelledby="experience-title" className="overflow-hidden border-t border-border py-[clamp(6rem,16vh,11rem)]">
+      <div className="px-5 md:px-10">
+        <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
+          <h2 id="experience-title" className="display text-[clamp(2.75rem,5.4vw,5.75rem)] md:col-span-7">Experience</h2>
+          <p className="max-w-[36ch] text-[17px] leading-relaxed text-muted-foreground md:col-span-4 md:col-start-9">I build technical experience through community leadership, outreach, events, hackathons, and constant hands-on learning.</p>
         </div>
-        <ol className="jobs md:col-span-8 md:col-start-5">
+        <ol className="jobs mt-[clamp(3rem,8vh,5rem)] rounded-[28px] border border-border p-4 sm:p-6 md:p-10">
           {experience.map((job) => (
-            <li key={job.company} className="job grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-border py-7 first:pt-0 md:grid-cols-[1.25fr_1fr_auto]">
+            <li key={job.company} className="job border-b border-border py-7 first:pt-0 last:border-b-0 last:pb-0">
               <p className="text-[clamp(1.6rem,2.9vw,2.9rem)] font-bold leading-tight tracking-[-0.035em] [font-stretch:108%]">{job.company}</p>
-              <p className="tabular text-[15px] font-medium text-muted-foreground md:order-last">{job.dates}</p>
-              <p className="col-span-2 text-[17px] md:col-span-1">{job.role}</p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">{job.skills.join(' · ')}</p>
+              <div className="mt-4">
+                {job.positions.map((position) => (
+                  <div key={position.role} className="relative pb-5 pl-7 last:pb-0">
+                    <span aria-hidden="true" className="absolute bottom-0 left-[5px] top-0 w-px bg-foreground/20 first:top-[7px] last:bottom-auto last:h-[7px] only:hidden" />
+                    <span aria-hidden="true" className={cn('absolute left-0 top-[7px] size-[11px] rounded-full', position.dates?.endsWith('Present') ? 'bg-primary ring-4 ring-primary/20' : 'border-[1.5px] border-foreground/50 bg-background')} />
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5">
+                      <p className="text-[17px] font-semibold">{position.role}</p>
+                      {position.dates && <p className="tabular text-[15px] text-muted-foreground">{position.dates}</p>}
+                    </div>
+                    {position.body && <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-muted-foreground">{position.body}</p>}
+                  </div>
+                ))}
+              </div>
             </li>
           ))}
         </ol>

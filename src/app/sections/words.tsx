@@ -32,7 +32,7 @@ export function InTheirWords() {
   }, { scope: root })
 
   return (
-    <section ref={root} id="in-their-words" aria-labelledby="words-title" className="px-5 py-[clamp(6rem,16vh,11rem)] md:px-10">
+    <section ref={root} id="in-their-words" aria-labelledby="words-title" className="px-5 pt-[clamp(0.75rem,2vh,1.25rem)] pb-[clamp(6rem,16vh,11rem)] md:px-10">
       <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
         <h2 id="words-title" className="display text-[clamp(2.75rem,5.4vw,5.75rem)] md:col-span-7">In their words.</h2>
         <p className="max-w-[36ch] text-[17px] leading-relaxed text-muted-foreground md:col-span-4 md:col-start-9">A snapshot of the competitions, communities, and events shaping my path.</p>

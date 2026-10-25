@@ -47,24 +47,90 @@ export function projectById(id: ProjectId) {
 export const projectNames = Object.fromEntries(projects.map((project) => [project.id, project.name]))
 export const featuredProjects = projects
 
-export const experience = [
+export type ExperiencePosition = { role: string; dates?: string; body?: string }
+export type ExperienceItem = { company: string; skills: string[]; positions: ExperiencePosition[] }
+
+export const experience: ExperienceItem[] = [
   {
-    role: "PR Associate / Chapter Leadership",
     company: "IEI Students' Chapter CSE AOT",
-    dates: 'Community leadership',
-    highlights: ['Technical event promotion and organization.', 'Partnerships, sponsor communication, and registration campaigns.', 'Community outreach and promotional content.'],
+    skills: ['Project Management', 'Public Affairs', 'Research Skills', 'Analytical Skills', 'Organization Skills', 'Time Management'],
+    positions: [
+      {
+        role: 'Convenor',
+        dates: 'Oct 2026 - Present',
+        body: 'Appointed to lead the chapter after more than a year of contribution, drawing on experience across events, outreach, and public relations to guide the community and take its initiatives to new heights.',
+      },
+      {
+        role: 'PR Co-Lead / PR Associate',
+        dates: 'Oct 2025 - Oct 2026',
+        body: 'Planned, managed, and executed chapter activities and technical events. Led public relations strategies, from promotional campaigns and content coordination to communication planning, for maximum outreach and student engagement. Played a key role in event execution, crowd management, and post-event reporting.',
+      },
+      {
+        role: 'PR Team Core Member',
+        dates: 'May 2025 - Oct 2025',
+        body: 'Technical event promotion and organization, partnerships and registration campaigns, and community outreach.',
+      },
+    ],
   },
   {
-    role: 'Core Team â€” PR Associate',
     company: 'Google Developer Groups on Campus AOT',
-    dates: 'Community leadership',
-    highlights: ['Developer community engagement.', 'Technical event promotion and outreach.', 'Public relations and communication.'],
+    skills: ['Project Management', 'Project Planning', 'Event Planning', 'Public Affairs', 'Media Relations', 'Press Liaison', 'Publicist'],
+    positions: [
+      {
+        role: 'Public Relations Lead',
+        dates: 'Oct 2026 - Present',
+        body: 'Promoted to Public Relations Lead after a year as coordinator, building on hands-on work across marketing, outreach, and event promotion.',
+      },
+      {
+        role: 'Public Relations Coordinator',
+        dates: 'Sep 2025 - Oct 2026',
+        body: 'Contributed actively to marketing and outreach initiatives to promote GDG on Campus events and programs, playing a key role in increasing student engagement through structured promotions.',
+      },
+    ],
   },
   {
-    role: 'PR Lead',
     company: 'Algorand Blockchain Club AOT',
-    dates: 'Community leadership',
-    highlights: ['Public relations, marketing, and partnerships.', 'Promotion of blockchain-focused activities.', 'Coordination across community and media teams.'],
+    skills: ['Strategic Public Relations Planning', 'Public Affairs', 'Online PR', 'Poster Design', 'Graphic Design', 'Partner Relationship Management', 'Customer Relationship Management (CRM)'],
+    positions: [
+      {
+        role: 'Head of Public Relations',
+        dates: 'Sep 2026 - Present',
+        body: 'Leading Public Relations & Outreach at Algorand Blockchain Club AOT, with a focus on building the club\'s brand, community presence, and ecosystem partnerships.',
+      },
+    ],
+  },
+  {
+    company: 'FrostHacks',
+    skills: ['Analytical Skills', 'Event Planning', 'Project Management', 'Public Affairs', 'Research Skills', 'Social Media Advertising', 'Social Media Communications', 'Social Media Marketing', 'Teamwork', 'Financial Analysis'],
+    positions: [
+      {
+        role: 'PR Core Member',
+        dates: 'Sep 2025 - May 2026',
+        body: 'Actively involved in sponsorship outreach, partner communication, and community collaboration, reaching out to brands, startups, and communities for sponsorship and support. Managed coordination with community partners, assisted in proposal discussions and follow-ups, and contributed to social media promotions and outreach strategies that strengthened FrostHacks\' public presence and partnerships.',
+      },
+    ],
+  },
+  {
+    company: 'Magistics',
+    skills: ['Event Management', 'Event Organizing', 'Multi-task & Handle High-volume Workloads', 'Time Management', 'Social Media Outreach', 'Web Design', 'Poster Design', 'Website Building', 'Human Resources (HR)', 'Partner Relationship Management'],
+    positions: [
+      {
+        role: 'Community Relations Manager',
+        dates: 'Jun 2026 - Present',
+        body: 'Leading community relations and event organizing at Magistics. I was in the organising team of HackInverse 1.0, contributing to event planning and coordination, social media outreach, poster and website design, and partner relationship management.',
+      },
+    ],
+  },
+  {
+    company: 'Miro',
+    skills: ['Marketing', 'Brand Ambassadorship'],
+    positions: [
+      {
+        role: 'Meetup Ambassador',
+        dates: 'Apr 2026 - Sep 2026',
+        body: 'Represented Miro as a Meetup Ambassador in the Greater Kolkata community, building brand presence through community meetups and marketing.',
+      },
+    ],
   },
 ]
 
@@ -97,7 +163,7 @@ export const about = {
     { heading: 'Community matters', body: 'Outside development, I contribute through public relations, event organization, partnerships, developer outreach, and promotional campaigns.' },
     { heading: 'What comes next', body: 'I am continuously improving my engineering skills, collaborating with other developers, and contributing meaningfully to the technology ecosystem.' },
   ],
-  career: experience.map((item) => ({ company: item.company, role: item.role, year: 'Now', dates: item.dates, body: item.highlights[0] })),
+  career: experience.map((item) => ({ company: item.company, role: item.positions[0].role, year: 'Now', dates: item.positions[0].dates ?? 'Community leadership', body: item.positions[0].body ?? '' })),
 }
 
 export const interests = [
