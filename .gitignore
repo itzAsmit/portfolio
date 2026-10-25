@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+*.local
+.claude/
+.cursor/
+.codex/
+.agents/
+.21st/

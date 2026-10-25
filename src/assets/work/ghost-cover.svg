@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Ghost View: a phone detecting an onlooker through its front camera and blacking out the private content on screen">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1326" />
+      <stop offset="1" stop-color="#131c36" />
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22335c" />
+      <stop offset="1" stop-color="#0d1428" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7de3d3" stop-opacity="0.14" />
+      <stop offset="1" stop-color="#7de3d3" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.46" r="0.75">
+      <stop offset="0.62" stop-color="#04060e" stop-opacity="0" />
+      <stop offset="1" stop-color="#04060e" stop-opacity="0.55" />
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9" />
+    </filter>
+    <clipPath id="screen">
+      <rect x="534" y="274" width="412" height="492" rx="36" />
+    </clipPath>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)" />
+
+  <g stroke="#ffffff" stroke-opacity="0.035" stroke-width="1">
+    <path d="M100 0V1000M200 0V1000M300 0V1000M400 0V1000M500 0V1000M600 0V1000M700 0V1000M800 0V1000M900 0V1000M1000 0V1000M1100 0V1000M1200 0V1000M1300 0V1000M1400 0V1000M1500 0V1000" />
+    <path d="M0 100H1600M0 200H1600M0 300H1600M0 400H1600M0 500H1600M0 600H1600M0 700H1600M0 800H1600M0 900H1600" />
+  </g>
+
+  <ellipse cx="740" cy="520" rx="430" ry="310" fill="url(#glow)" />
+
+  <!-- Onlooker silhouette with detection box -->
+  <g>
+    <circle cx="1240" cy="402" r="62" fill="#060a14" />
+    <path d="M1140 542 Q1240 468 1340 542 L1340 566 Q1240 502 1140 566 Z" fill="#060a14" />
+    <rect x="1130" y="312" width="220" height="258" rx="24" fill="none" stroke="#ff5470" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="12 10" />
+    <g fill="none" stroke="#ff5470" stroke-width="7" stroke-linecap="round">
+      <path d="M1142 344 V326 Q1142 314 1154 314 H1172" />
+      <path d="M1308 314 H1326 Q1338 314 1338 326 V344" />
+      <path d="M1338 538 V556 Q1338 568 1326 568 H1308" />
+      <path d="M1172 568 H1154 Q1142 568 1142 556 V538" />
+    </g>
+    <rect x="1120" y="262" width="240" height="42" rx="21" fill="#ff5470" fill-opacity="0.16" stroke="#ff5470" stroke-width="2" />
+    <text x="1240" y="290" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#ff8fa3">THREAT DETECTED</text>
+  </g>
+
+  <!-- Phone -->
+  <g>
+    <rect x="500" y="240" width="480" height="560" rx="56" fill="#0a0f1e" stroke="#2b3a5e" stroke-width="3" />
+    <g clip-path="url(#screen)">
+      <rect x="534" y="274" width="412" height="492" fill="url(#sky)" />
+      <circle cx="700" cy="418" r="52" fill="#f2a65a" />
+      <circle cx="640" cy="330" r="2.5" fill="#ffffff" fill-opacity="0.5" />
+      <circle cx="760" cy="306" r="2" fill="#ffffff" fill-opacity="0.4" />
+      <circle cx="880" cy="348" r="2.5" fill="#ffffff" fill-opacity="0.5" />
+      <circle cx="600" cy="388" r="2" fill="#ffffff" fill-opacity="0.35" />
+      <path d="M534 542 L642 438 L734 542 Z" fill="#1d2b4d" />
+      <path d="M756 542 L882 448 L946 542 Z" fill="#16223e" />
+      <rect x="534" y="538" width="412" height="14" fill="#04060e" opacity="0.5" filter="url(#soft)" />
+      <rect x="534" y="548" width="412" height="218" fill="#04060e" opacity="0.95" />
+      <path d="M688 616 Q740 578 792 616 Q740 654 688 616 Z" fill="none" stroke="#7de3d3" stroke-width="5" stroke-linejoin="round" />
+      <circle cx="740" cy="616" r="12" fill="none" stroke="#7de3d3" stroke-width="5" />
+      <line x1="684" y1="650" x2="796" y2="582" stroke="#ff5470" stroke-width="6" stroke-linecap="round" />
+      <text x="740" y="694" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" letter-spacing="6" fill="#9db1d6">SCREEN PROTECTED</text>
+      <text x="740" y="724" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="600" letter-spacing="4" fill="#5c6f96">AI DETECTED AN ONLOOKER</text>
+    </g>
+    <!-- Front camera with sensing rings -->
+    <circle cx="740" cy="257" r="6" fill="#7de3d3" />
+    <circle cx="740" cy="257" r="16" fill="none" stroke="#7de3d3" stroke-opacity="0.5" stroke-width="2.5" />
+    <circle cx="740" cy="257" r="27" fill="none" stroke="#7de3d3" stroke-opacity="0.28" stroke-width="2.5" />
+    <circle cx="740" cy="257" r="38" fill="none" stroke="#7de3d3" stroke-opacity="0.12" stroke-width="2.5" />
+  </g>
+
+  <!-- Sensing beam from the front camera to the onlooker -->
+  <line x1="752" y1="260" x2="1206" y2="392" stroke="#7de3d3" stroke-opacity="0.35" stroke-width="3" stroke-dasharray="12 10" />
+
+  <rect width="1600" height="1000" fill="url(#vignette)" />
+
+  <text x="64" y="942" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="700" letter-spacing="12" fill="#55688f">GHOST VIEW</text>
+  <text x="1536" y="942" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" letter-spacing="6" fill="#46587c">SYNCHRONICITY · SEASON 2</text>
+</svg>

@@ -1,0 +1,495 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant header-clear (&:where([data-header-tone="clear"] *));
+
+:root {
+  --background: #eef0f2;
+  --foreground: #111315;
+  --card: #f6f7f8;
+  --card-foreground: #111315;
+  --popover: #f6f7f8;
+  --popover-foreground: #111315;
+  --primary: #b3244a;
+  --primary-foreground: #fff5f7;
+  --secondary: #e3e6e9;
+  --secondary-foreground: #111315;
+  --muted: #e3e6e9;
+  --muted-foreground: #565a60;
+  --accent: #e3e6e9;
+  --accent-foreground: #111315;
+  --destructive: #b42318;
+  --border: rgb(17 19 21 / 0.12);
+  --input: rgb(17 19 21 / 0.2);
+  --ring: #b3244a;
+  --radius: 1.25rem;
+  --header-height: 4.5rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --background: #141414;
+  --foreground: #eeeeec;
+  --card: #1b1b1b;
+  --card-foreground: #eeeeec;
+  --popover: #1b1b1b;
+  --popover-foreground: #eeeeec;
+  --primary: #f0587a;
+  --primary-foreground: #1b0910;
+  --secondary: #232323;
+  --secondary-foreground: #eeeeec;
+  --muted: #232323;
+  --muted-foreground: #a1a3a6;
+  --accent: #232323;
+  --accent-foreground: #eeeeec;
+  --destructive: #f97066;
+  --border: rgb(238 238 236 / 0.12);
+  --input: rgb(238 238 236 / 0.2);
+  --ring: #f0587a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --font-sans: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat Variable", "Segoe Print", "Bradley Hand", cursive;
+  --ease-expo: var(--ease-out-expo);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@utility display {
+  font-weight: 780;
+  font-stretch: 112%;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+@utility display-wide {
+  font-weight: 820;
+  font-stretch: 125%;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The SmoothCursor arrow replaces the system pointer for fine-pointer visitors without a
+   reduced-motion preference; everyone else keeps the platform cursor. Modal dialogs sit in
+   the browser's top layer, so the arrow portals into the open dialog (lib/modal-target)
+   rather than staying on the body — no exception to cursor: none is needed. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+/* Header nav links: an underline slides in from the left only while hovered or focused. */
+.nav-underline {
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.nav-underline:hover,
+.nav-underline:focus-visible {
+  opacity: 0.65;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 1.5px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.3s ease-out;
+}
+
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after {
+  width: 100%;
+}
+
+/* Hero: the portrait becomes a window, and the statement arrives around it. */
+.hero-frame {
+  clip-path: inset(0% 0% 0% 0% round 0px);
+}
+
+.hero-statement {
+  position: relative;
+}
+
+.hero-sequence[data-cinematic="true"] .hero-statement {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr 36% 1fr;
+  align-items: center;
+  padding-inline: clamp(1.25rem, 3vw, 3rem);
+  pointer-events: none;
+}
+
+.hero-sequence[data-cinematic="true"] .statement-then {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+  padding-right: clamp(1.5rem, 2.4vw, 2.5rem);
+}
+
+.hero-sequence[data-cinematic="true"] .statement-now {
+  grid-column: 3;
+  justify-self: start;
+  padding-left: clamp(1.5rem, 2.4vw, 2.5rem);
+}
+
+.hero-sequence[data-cinematic="true"] .statement-spacer {
+  display: block;
+}
+
+/* Cover: photo and cutout share one crop so they stay registered; the name sits between them. */
+.hero-sequence {
+  --photo-inset: 0px;
+  /* The photo's sides fade into the frame while it sits in its 8:5 box (a no-op at zero inset). */
+  --side-fade: linear-gradient(90deg, transparent, #000 min(10%, var(--photo-inset)), #000 calc(100% - min(10%, var(--photo-inset))), transparent);
+  /* Note columns sit a fifth of the photo in from its sides (2.5rem at 1440 wide), so they follow the photo, not the screen. */
+  --note-gutter: calc(var(--photo-inset) + max(2.5rem, (100% - 2 * var(--photo-inset)) * 0.2 - 15.5rem));
+  --note-gutter-right: max(2.5rem, calc(var(--photo-inset) * 0.35 + 2rem));
+}
+
+/* Wider than 8:5, the portrait keeps its 8:5 crop in a centred box, so the screen shape never crops it tighter; its sides fade into the wall. */
+@media (min-aspect-ratio: 8/5) {
+  .hero-sequence {
+    --photo-inset: max(0px, (100vw - max(100svh, 560px) * 1.6) / 2);
+  }
+
+  .hero-image {
+    left: var(--photo-inset);
+    right: var(--photo-inset);
+  }
+
+  /* The sky behind the photo still runs edge to edge. */
+  .hero-image.full-bleed {
+    left: 0;
+    right: 0;
+  }
+
+  .cover-layer {
+    mask-image: var(--side-fade);
+  }
+}
+
+.cover-layer {
+  object-position: center;
+}
+
+.cover-type {
+  bottom: 1.5rem;
+  z-index: 1;
+}
+
+.cover-copy {
+  padding-bottom: calc(26vw + 3.5rem);
+}
+
+@media (min-width: 768px) and (min-aspect-ratio: 4/5) {
+  .cover-type {
+    /* The second term keeps the name (0.8 line-height) below the header on short landscape screens. */
+    bottom: calc(100% - max((100vw - 2 * var(--photo-inset)) * 0.105 + 6vh, var(--header-height) + 1rem + (100vw - 6rem) / 10.45 * 0.8));
+    z-index: 1;
+  }
+
+  .cover-copy {
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* Cover notes: reproduces the photo's cover crop (object-position center) so notes pin to photo fractions. */
+.note-fit {
+  width: max(100cqw, 100cqh * 1672 / 941);
+  height: max(100cqh, 100cqw * 941 / 1672);
+  left: calc((100cqw - max(100cqw, 100cqh * 1672 / 941)) * 0.5);
+  top: calc((100cqh - max(100cqh, 100cqw * 941 / 1672)) * 0.5);
+}
+
+/* Children, not the overlay itself, because the scroll timeline writes inline visibility on the overlay. */
+.note-overlay:not([data-ready]) > * {
+  visibility: hidden;
+}
+
+/* Notes rest as handwritten titles. The open note shows its detail and circles its part; the others step back. */
+[data-note-card] {
+  text-shadow: 0 1px 14px rgb(6 10 7 / 0.55), 0 0 2px rgb(6 10 7 / 0.35);
+  transition: opacity 0.3s ease;
+}
+
+.note-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.note-detail > * {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0s linear 0.35s;
+}
+
+[data-note-card][data-open] .note-detail {
+  grid-template-rows: 1fr;
+}
+
+[data-note-card][data-open] .note-detail > * {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease 0.08s, visibility 0s;
+}
+
+[data-note-line] {
+  transition: opacity 0.3s ease, stroke-width 0.3s ease;
+}
+
+[data-note-line][data-open] {
+  stroke-width: 2.5;
+}
+
+/* Closing fades the loop, then rewinds it unseen; opening draws it around the part. */
+[data-note-loop] {
+  opacity: 0;
+  stroke-dasharray: calc(var(--loop-length, 600) * 1px) calc(var(--loop-length, 600) * 1px + 12px);
+  stroke-dashoffset: calc(var(--loop-length, 600) * 1px + 6px);
+  transition: opacity 0.25s ease, stroke-dashoffset 0s linear 0.25s;
+}
+
+[data-note-loop][data-open] {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: opacity 0.1s ease, stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.hero-sequence[data-note] [data-note-card]:not([data-open]) {
+  opacity: 0.45;
+}
+
+.hero-sequence[data-note] [data-note-line]:not([data-open]) {
+  opacity: 0.35;
+}
+
+/* Notes painted with light, like the star trails behind them. */
+[data-note-card].note-light {
+  text-shadow: 0 0 10px rgb(255 186 110 / 0.6), 0 0 2px rgb(255 236 210 / 0.7), 0 1px 12px rgb(0 0 0 / 0.5);
+}
+
+.note-glow {
+  filter: drop-shadow(0 0 3px rgb(255 214 160 / 0.95)) drop-shadow(0 0 10px rgb(255 150 70 / 0.55));
+}
+
+/* Without GPU rendering (hero-exposure.tsx), one tight glow: the wide one is too slow to redraw there. */
+.hero-stage[data-lite] .note-glow {
+  filter: drop-shadow(0 0 3px rgb(255 214 160 / 0.95));
+}
+
+/* The viewfinder's exposure dot blinks while the shutter is open. */
+.exposure-dot {
+  animation: exposure-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes exposure-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* Landscape phones: the cover is taller than the screen, so the viewfinder's settings move to its top margin. */
+@media (max-height: 559px) {
+  .viewfinder-info {
+    top: 3.5%;
+    bottom: auto;
+    translate: 0 -50%;
+  }
+}
+
+/* Work: the period in "Selected work." opens like an aperture onto the first project. */
+.work-veil {
+  --iris-x: 50%;
+  --iris-y: 50%;
+  --iris-r: 0px;
+}
+
+.work-sequence[data-cinematic="true"] .work-veil {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 100svh;
+  margin-bottom: -100svh;
+  overflow: clip;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle at var(--iris-x) var(--iris-y), transparent var(--iris-r), #000 calc(var(--iris-r) + 1px));
+  mask-image: radial-gradient(circle at var(--iris-x) var(--iris-y), transparent var(--iris-r), #000 calc(var(--iris-r) + 1px));
+}
+
+@media (min-width: 768px) and (min-height: 640px) {
+  .chapter-stack .chapter {
+    position: sticky;
+    top: 0;
+    margin-bottom: 42svh;
+  }
+
+  .work-sequence[data-cinematic="true"] .chapter[data-index="0"] {
+    margin-bottom: 142svh;
+  }
+}
+
+/* Colleague quotes: cards pinned to a dotted board, key phrases marked in rose. */
+.words-board {
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 16%, transparent) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+.word-mark {
+  --mark: 100%;
+  color: inherit;
+  background: linear-gradient(rgb(240 88 122 / 0.34), rgb(240 88 122 / 0.34)) no-repeat 0 92% / var(--mark) 0.45em;
+  padding-inline: 0.04em;
+  box-decoration-break: clone;
+}
+
+.film-video::cue {
+  font-family: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: rgb(0 0 0 / 0.72);
+}
+
+/* ThreeUI Typography Vortex, trimmed to the rules this page needs. */
+.typography-vortex-component {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #151515;
+  touch-action: auto;
+}
+
+.typography-vortex-component--light {
+  background: #eef1f6;
+}
+
+.typography-vortex-component canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.typography-vortex-component__hint {
+  display: none;
+}
+
+.footer-wordmark {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 0;
+  width: max-content;
+  max-width: 94vw;
+  transform: translate(-50%, -50%);
+  color: rgb(17 19 21 / 0.12);
+  font-size: clamp(3.2rem, 13vw, 13rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dark .footer-wordmark {
+  color: rgb(244 244 241 / 0.14);
+}
+
+.marquee-track {
+  will-change: transform;
+}
+
+/* SplitText masks clip to the line box; extend them so descenders and overhangs stay visible. */
+.split-char-mask,
+.split-word-mask {
+  padding: 0.08em 0.06em 0.2em;
+  margin: -0.08em -0.06em -0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
