@@ -91,7 +91,6 @@ export function SiteFooter() {
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <Vortex key={theme} theme={theme} />
       </div>
-      <div aria-hidden="true" className="footer-wordmark">ASMIT BISWAS</div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_52%_46%_at_50%_50%,#eef1f6_38%,rgb(238_241_246/0)_100%)] dark:bg-[radial-gradient(ellipse_52%_46%_at_50%_50%,#151515_38%,rgb(21_21_21/0)_100%)]" />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pb-10 pt-[calc(var(--header-height)+3rem)] text-center">

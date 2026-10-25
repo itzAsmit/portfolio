@@ -1,4 +1,4 @@
-export type ProjectId = 'store' | 'portal' | 'esport'
+export type ProjectId = 'ghostview' | 'bot' | 'esport'
 
 export type Route =
   | { page: 'home'; anchor?: string }

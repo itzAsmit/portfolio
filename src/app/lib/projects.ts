@@ -8,7 +8,7 @@ import cloudinaryLogo from '../../assets/tech/cloudinary.svg'
 import kotlinLogo from '../../assets/tech/kotlin.svg'
 import mediapipeLogo from '../../assets/tech/mediapipe.svg'
 import gradleLogo from '../../assets/tech/gradle.svg'
-import portalCoverLocked from '../../assets/work/portal-cover-locked.webp'
+import botCoverLocked from '../../assets/work/bot-cover-locked.svg'
 import gmCover from '../../assets/work/gm_cover.png'
 import gmLeaderboard from '../../assets/work/leaderboard.png'
 import gmPlayerCard from '../../assets/work/player_card.png'
@@ -93,7 +93,7 @@ export type Project = Teaser & ((CaseStudy & { locked?: never }) | { locked: tru
 // Club Seals is a design challenge: its screens come from its prototype and its figures describe the work, not results.
 export const projects: Project[] = [
   {
-    id: 'store',
+    id: 'ghostview',
     name: 'Ghost View',
     category: 'Android · AI privacy',
     headline: 'Privacy beyond the screen.',
@@ -170,27 +170,26 @@ export const projects: Project[] = [
     cover: { src: ghostCover, alt: 'Illustration of Ghost View: a phone detecting an onlooker through its front camera and blacking out the private content on screen', width: 1600, height: 1000 },
   },
   {
-    id: 'portal',
-    name: 'Developer Portal',
-    category: 'Developer platform',
-    headline: 'Publishing, the way developers think about it.',
-    description: 'I shaped the new developer portal, from where it should live to how an app goes from package to published.',
-    summary: 'I redesigned app publishing around how developers think, and tested it with a coded prototype and developer research.',
-    role: 'Product designer',
-    organization: 'Global technology company',
-    timeline: 'July 2026',
-    status: 'Design complete, not yet built',
-    team: 'Product, engineering, research and Store leadership',
-    scope: 'Vision and information architecture, packaged, native and web app publishing, research, design language and coded prototypes',
+    id: 'bot',
+    name: 'Discord AI Bot',
+    category: 'Python · Discord · AI',
+    headline: 'Every group chat needs a villain.',
+    description: 'A Discord bot that keeps a personal roast database for every friend and calls Gemini 2.5 Flash when the scripts run dry.',
+    summary: 'A per-person roast database with an AI opening act, live since January 2026.',
+    role: 'Developer',
+    organization: 'Personal project',
+    status: 'Running in a private server',
+    team: 'Solo, end to end',
+    source: 'https://github.com/itzAsmit/roaster-bot',
+    scope: 'Python, discord.py, Gemini 2.5 Flash, per-person roast databases, Railway and Render deployment',
     metrics: [
-      { value: '6,000+', label: 'Developers use the portal each month' },
-      { value: '1,250+', label: 'New apps submitted each month' },
-      { value: '5,500+', label: 'App updates each month' },
+      { value: 'Always on', label: 'The bot that never sleeps' },
+      { value: 'Built different', label: 'Automation with utility, not just vibes' },
     ],
     locked: true,
     color: '#d0e266',
     ink: '#101714',
-    cover: { src: portalCoverLocked, alt: 'Blurred preview of the developer portal with a lock, protected under NDA', width: 1600, height: 1000 },
+    cover: { src: botCoverLocked, alt: 'Blurred Discord chat with a lock: the Discord AI Bot case study is password protected', width: 1600, height: 1000 },
   },
   {
     id: 'esport',

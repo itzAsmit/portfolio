@@ -1,0 +1,41 @@
+{
+  "problem": {
+    "body": "Every friend group on Discord runs on inside jokes — and every roast session eventually goes stale. The good ones get lost in scroll-back, the victims memorize the repeats, and whoever is roasting runs out of material mid-serve. The Discord AI Bot was built to fix the supply chain of a Discord roast session: every friend gets a personal, ever-growing roast database on call, and when the scripts run dry, an AI steps in to improvise."
+  },
+  "insight": "A roast only lands when it's personal — so give every friend their own database, and let the AI handle the strangers.",
+  "decisions": [
+    {
+      "title": "A database per victim",
+      "body": "The core of the bot is a per-person roast database in Python: arrays of hand-written roasts for each friend, with an index system that serves them sequentially so the rotation never repeats back-to-back — Ankit alone has twenty-seven. Each person also gets their own embed color, so a roast arrives looking personally addressed. !ankit serves the next one; !roastlist publishes the stats like a scoreboard.",
+      "shots": []
+    },
+    {
+      "title": "Gemini when the script runs out",
+      "body": "Hand-written roasts can't cover everything, so the bot leans on Google's Gemini 2.5 Flash — but only when tagged. @bot with a prompt generates a fresh roast, @bot with a name pulls from that person's database, and @bot with a plain question just chats. The tag gate keeps the bot a participant, not a lurker that answers messages it was never asked about.",
+      "shots": []
+    },
+    {
+      "title": "Built to run forever, cheaply",
+      "body": "The bot is a single Python service on discord.py with two secrets — the Discord token and the Gemini key — injected as environment variables on Railway or Render. It announces itself in the configured channels when it comes online, needs no database server, and has survived nine months of continuous service across forty-four commits of tuning.",
+      "shots": []
+    }
+  ],
+  "result": {
+    "body": "The bot has been running for the friend group since January 2026 — nine months of on-demand roasts, growing databases, and AI comebacks, maintained whenever someone deserves new material. It is deliberately private: the roast databases and the language stay inside the server they were written for.",
+    "changes": [
+      ["The same three jokes", "A growing database per friend"],
+      ["Roasts lost in scroll-back", "One command, instant serve"],
+      ["Humans run out of material", "Gemini improvises the rest"]
+    ]
+  },
+  "takeaway": {
+    "line": "Make it personal first, then let the AI improvise.",
+    "body": "The per-person databases are what make the bot funny — the AI is the opening act for strangers, not the headliner. Nine months in, the roast lists are still growing, and so is the victim count."
+  },
+  "cover": {
+    "src": "cover.svg",
+    "alt": "Mock Discord chat window where the Discord AI Bot serves a numbered roast from a friend's personal database",
+    "width": 1600,
+    "height": 1000
+  }
+}

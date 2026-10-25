@@ -7,7 +7,7 @@ import { projects as sourceProjects } from './projects'
 import type { Endorsement } from './projects'
 import type { ProjectId } from './routes.js'
 
-// Display copy for the template-derived projects; Gaming Marathon's real copy lives in projects.ts.
+// Display copy for the template-derived Ghost View; Roaster Bot and Gaming Marathon carry real copy in projects.ts.
 const projectCopy = [
   {
     name: 'Ghost View',
@@ -16,13 +16,6 @@ const projectCopy = [
     description: 'Ghost View uses AI monitoring through the front camera to catch someone photographing the screen or reading over a shoulder, and blacks it out in real time.',
     summary: 'Front-camera AI that detects physical privacy threats and blacks out the screen instantly.',
     organization: 'Synchronicity Season 2',
-  },
-  {
-    name: 'Discord AI Bot',
-    category: 'Python / AI',
-    headline: 'A useful bot for the community.',
-    description: 'An in-progress Discord bot exploring practical automation with Python, Discord.py, and the Gemini API.',
-    summary: 'An in-progress AI assistant for Discord communities.',
   },
 ]
 

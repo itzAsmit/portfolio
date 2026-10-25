@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { loadEnv } from 'vite'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
-const studies = ['portal', 'trip-planning']
+const studies = ['bot']
 const password = loadEnv('production', root, '').CASE_STUDY_PASSWORD?.trim()
 
 if (!password) {
@@ -27,7 +27,7 @@ const seal = (bytes) => {
   return { iv: iv.toString('base64'), data: encrypt(bytes, key, iv).toString('base64') }
 }
 const digest = (bytes) => createHash('sha256').update(bytes).digest('base64')
-const types = { jpg: 'image/jpeg', vtt: 'text/vtt' }
+const types = { jpg: 'image/jpeg', vtt: 'text/vtt', svg: 'image/svg+xml' }
 
 // A film from video/ (src/protected/<id>/film) is too large to inline. It gets its own random key, sealed
 // inside the case study, and its ciphertext ships as public/films/<id>.film. The local film/key.json keeps

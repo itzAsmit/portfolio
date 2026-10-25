@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <!-- Locked teaser cover for the roast bot case study: blurred chat, one clear lock. -->
+  <defs>
+    <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#ffffff" fill-opacity="0.05"/>
+    </pattern>
+    <filter id="blurLines" x="-10%" y="-40%" width="120%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#1e2129"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <!-- blurred fake conversation -->
+  <g filter="url(#blurLines)">
+    <rect x="220" y="200" width="620" height="52" rx="18" fill="#3a3f4d"/>
+    <rect x="220" y="300" width="880" height="52" rx="18" fill="#3a3f4d"/>
+    <rect x="980" y="400" width="420" height="52" rx="18" fill="#5865F2" fill-opacity="0.6"/>
+    <rect x="220" y="500" width="760" height="52" rx="18" fill="#3a3f4d"/>
+    <rect x="880" y="600" width="520" height="52" rx="18" fill="#5865F2" fill-opacity="0.6"/>
+    <rect x="220" y="700" width="540" height="52" rx="18" fill="#3a3f4d"/>
+  </g>
+
+  <!-- the lock -->
+  <g>
+    <rect x="1180" y="330" width="240" height="190" rx="34" fill="#d0e266"/>
+    <path d="M1230 330 v-56 a70 70 0 0 1 140 0 v56" stroke="#d0e266" stroke-width="26" stroke-linecap="round" fill="none"/>
+    <circle cx="1300" cy="408" r="22" fill="#1e2129"/>
+    <rect x="1290" y="418" width="20" height="44" rx="10" fill="#1e2129"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="220" y="130" font-size="44" font-weight="700" fill="#e8eaf2">The project is sealed.</text>
+    <text x="220" y="880" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="28" fill="#8d95a8">!unlock — password required to read the full case study</text>
+  </g>
+</svg>

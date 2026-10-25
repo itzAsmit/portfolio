@@ -455,26 +455,6 @@
   display: none;
 }
 
-.footer-wordmark {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  z-index: 0;
-  width: max-content;
-  max-width: 94vw;
-  transform: translate(-50%, -50%);
-  color: rgb(17 19 21 / 0.12);
-  font-size: clamp(3.2rem, 13vw, 13rem);
-  font-weight: 800;
-  letter-spacing: -0.08em;
-  line-height: 0.8;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.dark .footer-wordmark {
-  color: rgb(244 244 241 / 0.14);
-}
-
 .marquee-track {
   will-change: transform;
 }

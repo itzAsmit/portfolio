@@ -225,7 +225,9 @@ export function App() {
         <main id="main" ref={main} tabIndex={-1} key={routeKey(route)} className="outline-none">
           <Page route={route} />
         </main>
-        <SiteFooter />
+        {/* The "Have an interesting idea?" footer belongs to Home and About; Work and the
+            case studies end with their own content. */}
+        {(route.page === 'home' || route.page === 'about') && <SiteFooter />}
         <Curtain ref={curtain} />
         <CursorLabel />
         <SmoothCursor />

@@ -1,9 +1,9 @@
-export const projectIds = ['store', 'portal', 'esport']
+export const projectIds = ['ghostview', 'bot', 'esport']
 
 // Earlier placeholder projects and ids removed from the site; old links to them land on the Work index.
 const retiredIds = ['hello', 'vr', 'copilot', 'sms-organizer', 'travel-map', 'trip-planning', 'club-seals']
-// Renamed ids keep their old links working: 'sports' became 'esport' with the real Gaming Marathon content.
-const renamedIds = { sports: 'esport' }
+// Renamed ids keep their old links working: 'sports'→'esport', 'store'→'ghostview', 'portal'→'bot'.
+const renamedIds = { sports: 'esport', store: 'ghostview', portal: 'bot' }
 const projectPattern = new RegExp(`^work/(${projectIds.join('|')})(/film)?$`)
 const retiredPattern = new RegExp(`^(?:work|exhibition)/(?:${retiredIds.join('|')})$`)
 const legacyPattern = new RegExp(`^exhibition/(${projectIds.join('|')})$`)
@@ -15,7 +15,7 @@ export function parseRoute(hash) {
   if (value === 'work' || value === 'about') return { page: value }
   // The resume page retired; its PDF download lives on the About page now.
   if (value === 'resume') return { page: 'about' }
-  value = value.replace(/^work\/(\w+)(\/film)?$/, (match, id, film) => (renamedIds[id] ? `work/${renamedIds[id]}${film ?? ''}` : match))
+  value = value.replace(/^(work|exhibition)\/(\w+)(\/film)?$/, (match, prefix, id, film) => (renamedIds[id] ? `${prefix}/${renamedIds[id]}${film ?? ''}` : match))
   const project = projectPattern.exec(value)
   // #work/<id>/film is a shareable link that opens the project's film.
   if (project) return project[2] ? { page: 'project', id: project[1], film: true } : { page: 'project', id: project[1] }
