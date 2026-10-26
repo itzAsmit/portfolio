@@ -21,7 +21,6 @@ const notes: Note[] = [
   { id: 'head', part: 'Head', title: 'I solve it once, for good', text: 'One schema I built adds 4 new sports a cycle.', side: 'right', pin: [0.66, 0.29], box: [0.57, 0.22, 0.67, 0.36] },
   { id: 'eyes', part: 'Eyes', title: 'I watch before I draw', text: 'Research I led lifted satisfaction scores by 45%.', side: 'left', pin: [0.49, 0.37], box: [0.49, 0.33, 0.58, 0.41] },
   { id: 'heart', part: 'Heart', title: 'I chase light, near and far', text: 'Photography trains my framing; astronomy, my sense of scale.', side: 'right', pin: [0.70, 0.70], box: [0.62, 0.65, 0.72, 0.77] },
-  { id: 'arm', part: 'Connect', title: 'I bring people together', text: 'Community work turns technical ideas into shared experiences.', side: 'left', pin: [0.35, 0.65], box: [0.22, 0.58, 0.45, 0.75] },
 ]
 
 // Rides on a copy of the photo's crop, so pins share the photo's parallax and scroll scale.
