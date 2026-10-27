@@ -44,7 +44,11 @@ export function AboutPage() {
       <div aria-hidden="true" className="pointer-events-none absolute top-[42%] left-[-14%] -z-10 size-[28rem] rounded-full bg-primary/10 blur-[130px]" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-[-8%] right-[5%] -z-10 size-[26rem] rounded-full bg-primary/10 blur-[130px]" />
       <section className="grid gap-12 px-5 pt-[calc(var(--header-height)+clamp(1.5rem,4vh,3rem))] md:grid-cols-12 md:gap-8 md:px-10">
-        <div className="flex flex-col justify-start pt-10 md:col-span-7">
+        <div className="flex flex-col justify-end md:col-span-7">
+          <p className="mb-7 flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+            <span aria-hidden="true" className="size-[7px] animate-pulse rounded-full bg-primary" />
+            Developer · Designer · Community Builder
+          </p>
           <PageTitle className="max-w-[11ch] text-[clamp(2.75rem,6.4vw,7rem)] leading-[0.86]">{about.title}</PageTitle>
           <p className="mt-10 max-w-[44ch] text-[clamp(1.1rem,1.55vw,1.45rem)] leading-snug">{about.intro}</p>
         </div>
@@ -61,7 +65,7 @@ export function AboutPage() {
             contrast={1.25}
             revealRadius={150}
             wander
-            className="aspect-[7/8] w-full"
+            className="aspect-[4/5] w-full"
           />
         </figure>
       </section>
