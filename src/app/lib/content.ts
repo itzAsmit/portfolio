@@ -136,16 +136,17 @@ export const experience: ExperienceItem[] = [
 
 export const education = [
   { degree: 'B.Tech in Computer Science and Engineering', school: 'Academy of Technology', dates: 'Batch of 2028' },
+  { degree: 'Higher Secondary Education', school: 'Naihati Narendra Vidyaniketan', dates: 'Batch of 2024' },
 ]
 
 export const skills = [
-  { group: 'Programming', items: ['C', 'C++', 'Java', 'Python', 'JavaScript'] },
-  { group: 'Web development', items: ['HTML', 'CSS', 'JavaScript', 'React'] },
-  { group: 'Mobile development', items: ['Kotlin', 'Flutter'] },
-  { group: 'Backend and data', items: ['Node.js', 'Supabase', 'Firebase'] },
-  { group: 'Cloud and infrastructure', items: ['Google Cloud', 'Vercel', 'Docker', 'Terraform'] },
-  { group: 'Tools and design', items: ['Git', 'GitHub', 'Linux', 'npm', 'Android Studio', 'Figma', 'Canva'] },
-  { group: 'Computer science', items: ['Data Structures and Algorithms', 'OOP', 'DBMS', 'Operating Systems'] },
+  { group: 'Technical Skills', items: ['C', 'C++', 'Java', 'Python', 'JavaScript', 'Kotlin', 'HTML5', 'CSS3', 'React.js', 'Native Android Development', 'Flutter', 'Firebase', 'Supabase', 'Git', 'GitHub', 'Linux', 'Google Cloud', 'Vercel', 'Render'] },
+  { group: 'Design & Creative', items: ['UI/UX Design Fundamentals', 'Web Design', 'Graphic Design', 'Poster Design', 'Social Media Creatives', 'Visual Communication', 'Figma', 'Canva'] },
+  { group: 'Marketing & Public Relations', items: ['Public Relations', 'Digital Marketing', 'Social Media Management', 'Community Outreach', 'Partnership Development', 'Promotional Copywriting', 'Brand Communication', 'Audience Engagement'] },
+  { group: 'Event Management & Leadership', items: ['Hackathon Organization', 'Technical Event Coordination', 'Participant Engagement', 'Team Leadership', 'Project Coordination', 'Stakeholder Management', 'Volunteer Coordination', 'Community Building'] },
+  { group: 'Emerging Technologies', items: ['Blockchain', 'Web3 Fundamentals', 'AI-Assisted Development', 'Cloud Computing', 'Open-Source Technologies'] },
+  { group: 'Cybersecurity & CTF', items: ['Capture the Flag (CTF) Challenges', 'Basic Digital Forensics', 'File and Metadata Analysis', 'Steganography', 'Security Challenge Analysis', 'Vulnerability Investigation Fundamentals', 'Basic Web Security Concepts', 'Server-Side Template Injection (SSTI) Fundamentals', 'HTTP Request and Response Analysis', 'Audio Spectrogram Analysis', 'Hidden Data Discovery', 'Logical Reasoning', 'Pattern Recognition'] },
+  { group: 'Security Tooling & Linux', items: ['Kali Linux', 'Ubuntu', 'Windows Subsystem for Linux (WSL)', 'Linux Command Line', 'APT & PIP', 'ExifTool', 'Binwalk', 'Zsteg', 'strings', 'xxd', 'hexdump', 'UPX', 'netcat', 'pwntools', 'lldb', 'Nginx'] },
 ]
 
 export const practice = [
@@ -156,7 +157,7 @@ export const practice = [
 
 export const about = {
   title: 'Building at the intersection of code, creativity, and community.',
-  intro: "I'm Asmit Biswas, also known as Rishi a Computer Science and Engineering student at the Academy of Technology.",
+  intro: "I'm Asmit Biswas, also known as Rishi a Computer Science and Engineering student at the Academy of Technology. I like building real stuff, breaking it, fixing it, and learning in the process.",
   story: [
     { heading: 'Always exploring', body: 'I explore software development, web technologies, Android development, cloud tools, and emerging technology ecosystems.' },
     { heading: 'Learning by building', body: 'Hackathons, open-source exploration, and personal projects help me turn curiosity into working prototypes and useful experiments.' },

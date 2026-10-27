@@ -11,6 +11,7 @@ export function FlowButton({
   text = 'Modern Button',
   to,
   href,
+  download,
   tone = 'dark',
   base,
   fill,
@@ -22,6 +23,8 @@ export function FlowButton({
   // Renders an in-app link, an external href, or a plain button.
   to?: string
   href?: string
+  // With `href`, triggers a file download instead of opening a new tab.
+  download?: boolean | string
   tone?: 'dark' | 'light'
   base?: string
   fill?: string
@@ -65,7 +68,7 @@ export function FlowButton({
   )
 
   if (to) return <Link to={to} aria-label={ariaLabel} className={classes} style={style}>{inner}</Link>
-  // External hrefs open in a new tab; in-app `to` links navigate the SPA.
-  if (href) return <a href={href} target="_blank" rel="noreferrer" aria-label={ariaLabel} className={classes} style={style}>{inner}</a>
+  // External hrefs open in a new tab unless they download a file; in-app `to` links navigate the SPA.
+  if (href) return <a href={href} download={download} target={download ? undefined : '_blank'} rel={download ? undefined : 'noreferrer'} aria-label={ariaLabel} className={classes} style={style}>{inner}</a>
   return <button type="button" aria-label={ariaLabel} className={classes} style={style}>{inner}</button>
 }
