@@ -52,7 +52,7 @@ export function AboutPage() {
           <PageTitle className="max-w-[11ch] text-[clamp(2.75rem,6.4vw,7rem)] leading-[0.86]">{about.title}</PageTitle>
           <p className="mt-10 max-w-[44ch] text-[clamp(1.1rem,1.55vw,1.45rem)] leading-snug">{about.intro}</p>
         </div>
-        <figure className="about-photo order-first overflow-hidden rounded-[20px] md:order-none md:col-span-5 md:col-start-8" role="img" aria-label="Asmit Biswas, printed as a halftone — move the cursor over it to reveal the photo">
+        <figure className="about-photo order-first -mx-5 overflow-hidden rounded-none md:mx-0 md:order-none md:rounded-[20px] md:col-span-5 md:col-start-8" role="img" aria-label="Asmit Biswas, printed as a halftone — move the cursor over it to reveal the photo">
           <HalftoneReveal
             src={cutout}
             fit="contain"
