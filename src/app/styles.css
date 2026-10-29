@@ -216,6 +216,48 @@
   transform: scaleX(-1);
 }
 
+/* Mobile hero: a marquee of big letters scrolls across the base while each character bobs
+   on a staggered sine — a wave travelling through the ribbon. The per-character delays are
+   phase-matched across the loop seam (set in hero.tsx), so the wave never visibly restarts. */
+.scroll-wave-track {
+  animation: scroll-wave-marquee 22s linear infinite;
+}
+
+@keyframes scroll-wave-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-wave-char {
+  display: inline-block;
+  font-size: clamp(2.6rem, 12vw, 5.5rem);
+  font-weight: 820;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: rgb(244 244 241 / 0.28);
+  animation: scroll-wave-bob 1.8s ease-in-out infinite;
+  animation-delay: var(--w);
+}
+
+@keyframes scroll-wave-bob {
+  0%,
+  100% {
+    transform: translateY(0.09em);
+  }
+  50% {
+    transform: translateY(-0.09em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-wave-track,
+  .scroll-wave-char {
+    animation: none;
+  }
+}
+
 /* Glass pills for the social handles. */
 .social-pill {
   display: flex;

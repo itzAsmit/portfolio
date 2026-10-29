@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, type CSSProperties } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { gsap, SplitText, useGSAP, cinematic, motionOk } from '@/lib/gsap'
 import { Link, useNavigation } from '@/lib/navigation'
@@ -98,6 +98,33 @@ function HeroStage() {
   )
 }
 
+// A marquee of big letters drifting across the base of the hero; each character also bobs
+// on a staggered sine (the wave), phase-matched across the loop seam so it reads as one
+// continuous ribbon. Pure CSS.
+const SCROLL_UNIT = 'Scroll to explore · '
+function ScrollWave() {
+  const chars = (SCROLL_UNIT + SCROLL_UNIT).split('')
+  const per = SCROLL_UNIT.length
+  return (
+    <div
+      aria-hidden="true"
+      className="scroll-wave relative z-10 mt-12 overflow-hidden py-2 [mask-image:linear-gradient(90deg,transparent,black_14%,black_86%,transparent)]"
+    >
+      <div className="scroll-wave-track flex w-max">
+        {chars.map((char, index) => (
+          <span
+            key={index}
+            className="scroll-wave-char"
+            style={{ '--w': `${-(((index % per) / per) * 1.8).toFixed(3)}s` } as CSSProperties}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // The mobile landing hero: the name over a full-width band of the photograph, on night
 // colour with soft white blurs behind it. Desktop keeps the cinematic cover; this renders
 // below the lg breakpoint.
@@ -140,6 +167,8 @@ function HeroMobile() {
           <span className="font-semibold text-[#f4f4f1]">developer communities</span> together.
         </p>
       </div>
+
+      <ScrollWave />
     </div>
   )
 }
