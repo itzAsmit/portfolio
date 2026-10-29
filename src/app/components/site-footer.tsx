@@ -112,7 +112,7 @@ export function SiteFooter() {
         <p className="kicker mt-3 md:mt-4">
           <span className="kicker-rule" aria-hidden="true" />
           <span>
-            Let&rsquo;s talk at the <span className="text-primary">peak</span>
+            Let&rsquo;s talk
           </span>
           <span className="kicker-rule kicker-rule-end" aria-hidden="true" />
         </p>
