@@ -4,7 +4,7 @@ import { gsap, SplitText, useGSAP, cinematic, motionOk } from '@/lib/gsap'
 import { Link, useNavigation } from '@/lib/navigation'
 import { photos } from '@/lib/content'
 import { NoteCards, NoteMarks, bindNotes, hideNotes, layoutNotes, noteAt, revealNotes, type Note } from '@/sections/hero-notes'
-import { StarTrails, FocusPoint, Viewfinder, exposure, type CoverContext } from '@/sections/hero-exposure'
+import { StarTrails, FocusPoint, Viewfinder, exposure, exposureSeconds, clock, type CoverContext } from '@/sections/hero-exposure'
 import { FlowButton } from '@/components/ui/flow-button'
 
 function setHeaderTone(clear: boolean) {
@@ -105,17 +105,17 @@ function HeroMobile() {
   return (
     <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-14 text-[#f4f4f1] lg:hidden">
       {/* Soft white blooms, out of focus behind everything. */}
-      <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-28 size-80 rounded-full bg-[#f4f4f1]/[0.07] blur-3xl" />
-      <div aria-hidden="true" className="pointer-events-none absolute -bottom-44 -right-28 size-[27rem] rounded-full bg-[#f4f4f1]/[0.09] blur-3xl" />
+      <div aria-hidden="true" className="hero-mobile-bloom pointer-events-none absolute -right-28 -top-28 size-80 rounded-full bg-[#f4f4f1]/[0.07] blur-3xl" />
+      <div aria-hidden="true" className="hero-mobile-bloom pointer-events-none absolute -bottom-44 -right-28 size-[27rem] rounded-full bg-[#f4f4f1]/[0.09] blur-3xl" />
 
       <div className="relative z-10 px-5 pt-[calc(var(--header-height)+1.75rem)]">
-        <p className="flex items-center gap-3 text-[21px] text-[#f4f4f1]/75" style={{ fontFamily: 'var(--font-hand)' }}>
+        <p className="hero-mobile-reveal flex items-center gap-3 text-[21px] text-[#f4f4f1]/75" style={{ fontFamily: 'var(--font-hand)' }}>
           <span aria-hidden="true" className="h-px w-8 bg-[#f4f4f1]/70" />
           Hello, I&rsquo;m
         </p>
         <h1 className="mt-3 text-[16.5vw] font-[820] uppercase leading-[0.88] tracking-[-0.02em] text-[#f4f4f1] [font-stretch:118%]">
-          <span className="block">Asmit</span>
-          <span className="block">Biswas</span>
+          <span className="hero-mobile-name-part block">Asmit</span>
+          <span className="hero-mobile-name-part block">Biswas</span>
         </h1>
       </div>
 
@@ -123,23 +123,30 @@ function HeroMobile() {
         <img
           src={photos.benchScene}
           alt="Asmit Biswas seated outdoors at dusk"
-          className="size-full object-cover object-[62%_18%] [mask-image:linear-gradient(180deg,transparent,black_16%,black_88%,transparent)]"
+          data-cover="mobile"
+          className="hero-mobile-photo size-full object-cover object-[62%_18%] [mask-image:linear-gradient(180deg,transparent,black_16%,black_88%,transparent)]"
           fetchPriority="high"
           decoding="async"
         />
+        <Viewfinder />
+        <div className="hero-mobile-focus absolute left-[36.5%] top-[37%] z-10" aria-hidden="true">
+          <svg viewBox="0 0 40 40" className="block size-11 -translate-x-1/2 -translate-y-1/2 overflow-visible text-[#f4f4f1]" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path vectorEffect="non-scaling-stroke" d="M0 11V0h11M29 0h11v11M40 29v11H29M11 40H0V29" />
+          </svg>
+        </div>
       </figure>
 
       <div className="relative z-10 -mt-3 px-5">
-        <span aria-hidden="true" className="block h-[3px] w-14 rounded-full bg-[#f4f4f1]/80" />
-        <h2 className="mt-5 text-[1.7rem] font-bold leading-[1.18] tracking-[-0.02em] [font-stretch:105%]">
+        <span aria-hidden="true" className="hero-mobile-reveal block h-[3px] w-14 rounded-full bg-[#f4f4f1]/80" />
+        <h2 className="hero-mobile-reveal mt-5 text-[1.7rem] font-bold leading-[1.18] tracking-[-0.02em] [font-stretch:105%]">
           Computer Science &amp; Engineering student at Academy of Technology
         </h2>
-        <p className="mt-5 text-[1.08rem] leading-relaxed text-[#f4f4f1]/75">
+        <p className="hero-mobile-reveal mt-5 text-[1.08rem] leading-relaxed text-[#f4f4f1]/75">
           I build <span className="font-semibold text-[#f4f4f1]">software</span>, explore{' '}
           <span className="font-semibold text-[#f4f4f1]">emerging technologies</span>, and bring{' '}
           <span className="font-semibold text-[#f4f4f1]">developer communities</span> together.
         </p>
-        <p className="mt-9 flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#f4f4f1]/45">
+        <p className="hero-mobile-reveal mt-9 flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#f4f4f1]/45">
           Scroll
           <ArrowDown aria-hidden="true" className="scroll-cue size-3.5" strokeWidth={2} />
         </p>
@@ -217,8 +224,9 @@ export function Hero() {
       }
 
       if (!isCover) {
-        // The mobile landing hero: none of the cover machinery exists below lg, so only the
-        // header tone and the story reveals run here.
+        // The mobile landing hero: the cover machinery is desktop-only, but the opening
+        // mirrors it — night, a viewfinder hunts focus over the photograph, the shutter
+        // blinks open, the picture develops, then the name rises and the story arrives.
         const tone = gsap.timeline({
           scrollTrigger: {
             trigger: q('.hero-mobile')[0],
@@ -243,6 +251,78 @@ export function Hero() {
             }),
           })
         }
+
+        const photo = q('.hero-mobile-photo')[0] as HTMLImageElement | undefined
+        const finder = q('.hero-mobile .viewfinder')[0]
+        const focus = q('.hero-mobile-focus')[0]
+        const time = q('.hero-mobile .exposure-time')[0]
+        const header = document.querySelector<HTMLElement>('.site-header')
+
+        if (motion && !introPlayed && photo && finder && focus && time) {
+          let mobileNameRise: gsap.core.Tween | undefined
+          SplitText.create(q('.hero-mobile-name-part'), {
+            type: 'words,chars',
+            aria: 'none',
+            mask: 'chars',
+            charsClass: 'split-char',
+            autoSplit: true,
+            onSplit: (self) => (mobileNameRise = gsap.from(self.chars, { yPercent: 140, duration: 1.1, ease: 'expo.out', stagger: 0.03, paused: true })),
+          })
+          const mark = focus.firstElementChild as HTMLElement
+          const state = { length: 0.004 }
+          const grow = () => {
+            time.textContent = clock(state.length * exposureSeconds)
+          }
+          gsap.set(photo, { filter: 'brightness(0.12) saturate(0.6)' })
+          gsap.set(q('.hero-mobile-bloom'), { opacity: 0 })
+          gsap.set(q('.hero-mobile-reveal'), { y: 24, opacity: 0 })
+          gsap.set(finder, { display: 'block', opacity: 0 })
+          gsap.set(focus, { opacity: 1 })
+          if (header) gsap.set(header, { autoAlpha: 0 })
+          gsap.fromTo(finder, { opacity: 0 }, { opacity: 1, duration: 0.5, delay: 0.1 })
+          const hunt = gsap.to(mark, {
+            keyframes: [
+              { x: '-40%', y: '18%', scale: 1.18, duration: 0.32 },
+              { x: '22%', y: '-12%', scale: 0.94, duration: 0.28 },
+              { x: '8%', y: '6%', scale: 1.08, duration: 0.26 },
+              { x: '0%', y: '0%', scale: 1, duration: 0.3 },
+            ],
+            ease: 'power2.inOut',
+            repeat: -1,
+          })
+          const intro = gsap
+            .timeline({
+              paused: true,
+              onStart: () => {
+                introPlayed = true
+              },
+            })
+            .call(() => hunt.kill(), undefined, 0)
+            .to(mark, { x: 0, y: 0, scale: 1, color: '#8cf5a8', duration: 0.3, ease: 'back.out(2.5)' }, 0)
+            .to(focus, { opacity: 0, duration: 0.3 }, 0.5)
+            .to(state, { length: 1, duration: 1.8, ease: 'power2.inOut', onUpdate: grow }, 0.4)
+            .to(photo, { filter: 'brightness(1) saturate(1)', duration: 1.6, ease: 'power1.inOut', clearProps: 'filter' }, 0.5)
+            .to(q('.hero-mobile-bloom'), { opacity: 1, duration: 1.4, ease: 'power1.inOut' }, 0.7)
+            .to(q('.hero-mobile .viewfinder-shutter'), { opacity: 1, duration: 0.07, ease: 'none' }, 2.15)
+            .to(q('.hero-mobile .viewfinder-shutter'), { opacity: 0, duration: 0.25, ease: 'power1.out' }, 2.3)
+            .to(finder, { autoAlpha: 0, duration: 0.5 }, 2.4)
+            .add(() => mobileNameRise?.play(), 2.25)
+            .to(q('.hero-mobile-reveal'), { y: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'expo.out', clearProps: 'transform,opacity' }, 2.35)
+          if (header) intro.to(header, { autoAlpha: 1, duration: 0.6, clearProps: 'opacity,visibility' }, 2.7)
+          const inputs = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const
+          const hurry = () => intro.timeScale(4).play()
+          const stop = () => inputs.forEach((type) => window.removeEventListener(type, hurry))
+          inputs.forEach((type) => window.addEventListener(type, hurry, { passive: true }))
+          const timer = window.setTimeout(() => intro.play(), 3500)
+          void photo.decode().then(() => intro.play(), () => undefined)
+          return () => {
+            stop()
+            window.clearTimeout(timer)
+            tone.kill()
+            setHeaderTone(false)
+          }
+        }
+
         return () => {
           tone.kill()
           setHeaderTone(false)

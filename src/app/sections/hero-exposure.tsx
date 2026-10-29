@@ -32,8 +32,8 @@ const styles = [
 const sweep = 0.3
 const turn = 0.0045
 // What a full trail would take in a real exposure: that share of one turn of the sky (a sidereal day, in seconds).
-const exposureSeconds = (sweep / (2 * Math.PI)) * 86164
-const clock = (seconds: number) => [seconds / 3600, (seconds / 60) % 60, seconds % 60].map((part) => String(Math.floor(part)).padStart(2, '0')).join(':')
+export const exposureSeconds = (sweep / (2 * Math.PI)) * 86164
+export const clock = (seconds: number) => [seconds / 3600, (seconds / 60) % 60, seconds % 60].map((part) => String(Math.floor(part)).padStart(2, '0')).join(':')
 
 // Without GPU rendering every frame that redraws the trails or blurs the note glow costs several times its budget. When
 // the intro's first frames run slow, the cover goes lite for the rest of the page load: the trails redraw less often
