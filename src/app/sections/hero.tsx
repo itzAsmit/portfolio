@@ -103,7 +103,7 @@ function HeroStage() {
 // below the lg breakpoint.
 function HeroMobile() {
   return (
-    <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-14 text-[#f4f4f1] lg:hidden">
+    <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-14 text-[#f4f4f1] lg:hidden dark:bg-background">
       <div className="relative z-10 px-5 pt-[calc(var(--header-height)+1.75rem)]">
         <p className="hero-mobile-reveal flex items-center gap-3 text-[21px] text-[#f4f4f1]/75" style={{ fontFamily: 'var(--font-hand)' }}>
           <span aria-hidden="true" className="h-px w-8 bg-[#f4f4f1]/70" />
