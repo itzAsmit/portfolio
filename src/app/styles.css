@@ -175,20 +175,106 @@
   width: 100%;
 }
 
-/* Contact footer: sweeping underline for the mailto link, glass pills for social handles. */
-.email-sweep {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 0% 2px;
-  transition: background-size 0.45s var(--ease-out-expo);
+/* Contact footer: the email is the primary CTA — a glass pill whose mail badge opens its
+   flap and slides the note out on hover or focus, matching the social pills below it. */
+.email-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: rgb(255 255 255 / 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.5rem 1.7rem 0.5rem 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.35s ease;
 }
 
-.email-sweep:hover,
-.email-sweep:focus-visible {
-  background-size: 100% 2px;
+.email-cta:hover,
+.email-cta:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  color: var(--primary);
+  box-shadow: 0 14px 34px -14px color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
+.email-badge {
+  --mail-bg: color-mix(in srgb, var(--primary) 10%, #ffffff);
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--mail-bg);
+  color: var(--primary);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.email-cta:hover .email-badge,
+.email-cta:focus-visible .email-badge {
+  --mail-bg: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.mail-flap,
+.mail-letter {
+  transform-box: fill-box;
+  transition: transform 0.45s var(--ease-out-expo), opacity 0.35s ease;
+}
+
+.mail-flap {
+  transform-origin: 50% 0%;
+}
+
+.mail-letter {
+  opacity: 0;
+  transform: translateY(2px);
+  transition-delay: 0s;
+}
+
+.mail-letter rect {
+  fill: var(--mail-bg);
+}
+
+.mail-pocket {
+  fill: var(--mail-bg);
+  transition: fill 0.35s ease;
+}
+
+.email-cta:hover .mail-flap,
+.email-cta:focus-visible .mail-flap {
+  transform: perspective(40px) rotateX(160deg);
+}
+
+.email-cta:hover .mail-letter,
+.email-cta:focus-visible .mail-letter {
+  opacity: 1;
+  transform: translateY(-2px);
+  transition-delay: 0.08s;
+}
+
+[data-theme='dark'] .email-cta {
+  background: rgb(255 255 255 / 0.05);
+}
+
+[data-theme='dark'] .email-badge {
+  --mail-bg: color-mix(in srgb, var(--primary) 16%, #1c1c1c);
+}
+
+[data-theme='dark'] .mail-pocket,
+[data-theme='dark'] .mail-letter rect {
+  fill: var(--mail-bg);
+}
+
+/* Glass pills for the social handles. */
 .social-pill {
   display: flex;
   align-items: center;
