@@ -153,6 +153,17 @@ function trailField(canvas: HTMLCanvasElement, rest: number, mask: HTMLImageElem
   const width = (canvas.width = Math.round(canvas.offsetWidth * density))
   const height = (canvas.height = Math.round(canvas.offsetHeight * density))
   const box = { x: (corner.x - origin.x) * density, y: (corner.y - origin.y) * density, width: photo.offsetWidth * density, height: photo.offsetHeight * density }
+  // Portrait layouts zoom the photo layers about his face (--photo-zoom in styles.css); the
+  // registered box maps through the same transform so the trails stay on the wall.
+  const zoom = Number(getComputedStyle(stage).getPropertyValue('--photo-zoom')) || 1
+  if (zoom !== 1) {
+    const zx = box.x + box.width * 0.57
+    const zy = box.y + box.height * 0.45
+    box.x = zx + (box.x - zx) * zoom
+    box.y = zy + (box.y - zy) * zoom
+    box.width *= zoom
+    box.height *= zoom
+  }
   const context = canvas.getContext('2d')!
   context.lineCap = 'round'
   const pole = { x: box.x + box.width * 1.08, y: box.y - box.height * 0.28 }

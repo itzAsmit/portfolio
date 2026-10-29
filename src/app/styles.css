@@ -367,6 +367,26 @@
     padding-bottom: 1.75rem;
   }
 
+  /* Tighter framing: the photo layers zoom about his face, and the trail stencil maps the
+     same transform (hero-exposure.tsx reads --photo-zoom). Kept below the cinematic
+     breakpoint, which owns these transforms on large screens. */
+  @media (max-width: 1023.98px) {
+    .hero-stage {
+      --photo-zoom: 1.3;
+    }
+
+    .hero-frame .hero-image:not(.full-bleed),
+    .star-trails .hero-image:not(.full-bleed) {
+      overflow: hidden;
+    }
+
+    .hero-frame .hero-image:not(.full-bleed) > .cover-photo,
+    .star-trails .hero-image:not(.full-bleed) > .cover-photo {
+      transform: scale(var(--photo-zoom, 1));
+      transform-origin: 57% 45%;
+    }
+  }
+
   /* Default strip: photo edge to edge at the top, name beneath it, copy at the base. */
   .cover-type {
     top: calc(75vw + 1.5rem);
