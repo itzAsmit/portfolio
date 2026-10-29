@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { TypographyVortexCanvas } from '@designcodeio/threeui/components/TypographyVortexCanvas'
 import { siGithub, siInstagram, siX } from 'simple-icons'
-import '@fontsource/great-vibes/latin-400.css'
+import '@fontsource/homemade-apple/latin-400.css'
 import { gsap, motionOk } from '@/lib/gsap'
 import { useTheme, type Theme } from '@/lib/theme'
 import { email, profiles } from '@/lib/content'
@@ -117,7 +117,7 @@ export function SiteFooter() {
         <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground md:mt-4">
           Let&rsquo;s talk at the <span className="text-primary">peak</span>
         </p>
-        <Signature className="mt-1 w-[min(78vw,24rem)] md:mt-2" />
+        <Signature className="mt-1 w-[min(82vw,26rem)] md:mt-2" />
         <a
           href={`mailto:${email}`}
           className="email-sweep mt-3 text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground md:mt-4"

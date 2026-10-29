@@ -224,8 +224,8 @@
 /* Contact footer: the signature traces itself letter by letter when scrolled into view,
    then the ink settles (fill fades in, stroke fades out) and a flourish sweeps underneath. */
 .signature-char {
-  font-family: 'Great Vibes', cursive;
-  font-size: 84px;
+  font-family: 'Homemade Apple', cursive;
+  font-size: 70px;
   fill: currentColor;
   fill-opacity: 0;
   stroke: currentColor;

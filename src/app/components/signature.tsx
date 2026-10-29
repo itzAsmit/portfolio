@@ -28,8 +28,8 @@ export function Signature({ className }: { className?: string }) {
 
   return (
     <div ref={ref} className={live ? 'signature is-live' : 'signature'}>
-      <svg viewBox="0 0 480 150" className={className} role="img" aria-label="Signature: Asmit Biswas">
-        <text x="240" y="82" textAnchor="middle" dominantBaseline="central" aria-hidden="true">
+      <svg viewBox="0 0 560 170" className={className} role="img" aria-label="Signature: Asmit Biswas">
+        <text x="280" y="82" textAnchor="middle" dominantBaseline="central" aria-hidden="true">
           {NAME.split('').map((char, index) => (
             <tspan key={index} className="signature-char" style={{ '--d': `${index * STAGGER}s` } as CSSProperties}>
               {char === ' ' ? '\u00A0' : char}
@@ -39,7 +39,7 @@ export function Signature({ className }: { className?: string }) {
         <path
           className="signature-flourish"
           style={{ '--d': `${NAME.length * STAGGER + 0.3}s` } as CSSProperties}
-          d="M30 116 C 130 132, 315 100, 450 116"
+          d="M34 140 C 160 156, 400 122, 526 140"
           pathLength={1}
           aria-hidden="true"
         />
