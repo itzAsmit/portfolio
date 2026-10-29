@@ -221,62 +221,6 @@
   background: rgb(255 255 255 / 0.05);
 }
 
-/* Contact footer: the name signs itself — each hand-authored stroke sweeps its dash along
-   the pen path while a nib dot rides the same geometry (SMIL), stroke after stroke, then
-   the flourish underlines. */
-.sig-stroke {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  /* A hair past the dash length so no round-cap dot peeks at the start in some engines. */
-  stroke-dashoffset: 1.001;
-}
-
-.signature.is-live .sig-stroke {
-  animation: sig-draw var(--dur) linear forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes sig-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.sig-nib {
-  fill: currentColor;
-  opacity: 0;
-}
-
-.signature.is-live .sig-nib {
-  animation: sig-nib var(--dur) linear forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes sig-nib {
-  0%,
-  92% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sig-stroke {
-    animation: none;
-    stroke-dashoffset: 0;
-  }
-
-  .sig-nib {
-    display: none;
-  }
-}
-
 /* Hero: the portrait becomes a window, and the statement arrives around it. */
 .hero-frame {
   clip-path: inset(0% 0% 0% 0% round 0px);

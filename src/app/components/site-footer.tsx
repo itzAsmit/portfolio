@@ -5,7 +5,6 @@ import { gsap, motionOk } from '@/lib/gsap'
 import { useTheme, type Theme } from '@/lib/theme'
 import { email, profiles } from '@/lib/content'
 import { Magnetic } from '@/components/magnetic'
-import { Signature } from '@/components/signature'
 import TechText from '@/components/ui/tech-text'
 
 // Neither simple-icons nor lucide ships the LinkedIn mark any more, so its path is inlined.
@@ -116,10 +115,9 @@ export function SiteFooter() {
         <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground md:mt-4">
           Let&rsquo;s talk at the <span className="text-primary">peak</span>
         </p>
-        <Signature className="mt-1 w-[min(82vw,26rem)] md:mt-2" />
         <a
           href={`mailto:${email}`}
-          className="email-sweep mt-3 text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground md:mt-4"
+          className="email-sweep mt-5 text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground md:mt-6"
         >
           {email}
         </a>
