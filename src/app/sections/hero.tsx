@@ -1,10 +1,8 @@
 import { useRef } from 'react'
-import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
-import { siGithub, siInstagram, siX } from 'simple-icons'
+import { ArrowUpRight } from 'lucide-react'
 import { gsap, SplitText, useGSAP, cinematic, motionOk } from '@/lib/gsap'
-import { linkedInPath } from '@/lib/brand-paths'
 import { Link, useNavigation } from '@/lib/navigation'
-import { email, photos, profiles } from '@/lib/content'
+import { photos } from '@/lib/content'
 import { NoteCards, NoteMarks, bindNotes, hideNotes, layoutNotes, noteAt, revealNotes, type Note } from '@/sections/hero-notes'
 import { StarTrails, FocusPoint, Viewfinder, exposure, type CoverContext } from '@/sections/hero-exposure'
 import { FlowButton } from '@/components/ui/flow-button'
@@ -100,35 +98,25 @@ function HeroStage() {
   )
 }
 
-// The mobile landing hero: the photograph presents full width in a 4:3-ish band under the
-// name, and the story, actions and socials stack beneath it. Desktop keeps the cinematic
-// cover; this renders below the lg breakpoint.
+// The mobile landing hero: the name over a full-width band of the photograph, on night
+// colour with soft white blurs behind it. Desktop keeps the cinematic cover; this renders
+// below the lg breakpoint.
 function HeroMobile() {
-  const socialIcons: Record<string, string> = { Instagram: siInstagram.path, LinkedIn: linkedInPath, GitHub: siGithub.path, X: siX.path }
   return (
-    <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-12 text-[#f4f4f1] lg:hidden">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-20 size-72 rounded-full bg-[radial-gradient(circle_at_35%_35%,rgb(226_36_74/0.3),rgb(226_36_74/0)_70%)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute -bottom-48 -right-32 size-[27rem] rounded-full bg-[radial-gradient(circle_at_35%_30%,rgb(226_36_74/0.32),rgb(226_36_74/0)_72%)]" />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-[46%] flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#f4f4f1]/40 [writing-mode:vertical-rl]"
-      >
-        <span className="size-1.5 rounded-full bg-primary [writing-mode:horizontal-tb]" />
-        Tech · Design · Events · Community
-      </div>
+    <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-14 text-[#f4f4f1] lg:hidden">
+      {/* Soft white blooms, out of focus behind everything. */}
+      <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-28 size-80 rounded-full bg-[#f4f4f1]/[0.07] blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-44 -right-28 size-[27rem] rounded-full bg-[#f4f4f1]/[0.09] blur-3xl" />
 
-      <div className="relative z-10 px-5 pt-[calc(var(--header-height)+1.5rem)]">
-        <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#f4f4f1]/70">
-          <span aria-hidden="true" className="h-px w-8 bg-primary" />
+      <div className="relative z-10 px-5 pt-[calc(var(--header-height)+1.75rem)]">
+        <p className="flex items-center gap-3 text-[21px] text-[#f4f4f1]/75" style={{ fontFamily: 'var(--font-hand)' }}>
+          <span aria-hidden="true" className="h-px w-8 bg-[#f4f4f1]/70" />
           Hello, I&rsquo;m
         </p>
-        <h1 className="mt-3 text-[16.5vw] font-[820] uppercase leading-[0.88] tracking-[-0.02em] [font-stretch:118%]">
-          <span className="block text-white">Asmit</span>
-          <span className="block bg-gradient-to-r from-[#ff5d73] to-[#b3244a] bg-clip-text text-transparent">Biswas</span>
+        <h1 className="mt-3 text-[16.5vw] font-[820] uppercase leading-[0.88] tracking-[-0.02em] text-[#f4f4f1] [font-stretch:118%]">
+          <span className="block">Asmit</span>
+          <span className="block">Biswas</span>
         </h1>
-        <p className="mt-4 text-[10.5px] font-semibold uppercase tracking-[0.3em] text-[#f4f4f1]/60">
-          Builder <span className="text-primary">·</span> Learner <span className="text-primary">·</span> Community Enthusiast
-        </p>
       </div>
 
       <figure className="relative -mt-12 h-[38svh] sm:h-[42svh]">
@@ -142,61 +130,15 @@ function HeroMobile() {
       </figure>
 
       <div className="relative z-10 -mt-3 px-5">
-        <span aria-hidden="true" className="block h-[3px] w-14 rounded-full bg-primary" />
+        <span aria-hidden="true" className="block h-[3px] w-14 rounded-full bg-[#f4f4f1]/80" />
         <h2 className="mt-5 text-[1.7rem] font-bold leading-[1.18] tracking-[-0.02em] [font-stretch:105%]">
           Computer Science &amp; Engineering student at Academy of Technology
         </h2>
         <p className="mt-5 text-[1.08rem] leading-relaxed text-[#f4f4f1]/75">
-          I build <span className="font-semibold text-[#ff5d73]">software</span>, explore{' '}
-          <span className="font-semibold text-[#ff5d73]">emerging technologies</span>, and bring{' '}
-          <span className="font-semibold text-[#ff5d73]">developer communities</span> together.
+          I build <span className="font-semibold text-[#f4f4f1]">software</span>, explore{' '}
+          <span className="font-semibold text-[#f4f4f1]">emerging technologies</span>, and bring{' '}
+          <span className="font-semibold text-[#f4f4f1]">developer communities</span> together.
         </p>
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          <Link
-            to="#work"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#ff5d73] to-[#c2183c] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_12px_30px_-12px_rgb(226_36_74/0.7)] transition-transform active:scale-95"
-          >
-            View My Work <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2.25} />
-          </Link>
-          <Link
-            to="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-[#f4f4f1]/30 px-6 py-3 text-[15px] font-semibold text-[#f4f4f1] transition-colors hover:border-[#f4f4f1]/60 active:scale-95"
-          >
-            Get In Touch <MessageCircle aria-hidden="true" className="size-4" strokeWidth={2} />
-          </Link>
-        </div>
-        <ul className="mt-8 flex items-center gap-7">
-          {profiles.map((profile) => (
-            <li key={profile.label}>
-              <a href={profile.href} target="_blank" rel="noreferrer" aria-label={profile.label} className="block text-[#f4f4f1]/70 transition-colors hover:text-[#ff5d73]">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[22px]">
-                  <path d={socialIcons[profile.label]} />
-                </svg>
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href={`mailto:${email}`} aria-label="Email" className="block text-[#f4f4f1]/70 transition-colors hover:text-[#ff5d73]">
-              <Mail aria-hidden="true" className="size-[22px]" strokeWidth={1.75} />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-5 left-3 w-44 text-[#f4f4f1]/10"
-        viewBox="0 0 200 80"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      >
-        <path d="M12 62 C 40 16, 60 18, 54 44 C 49 66, 28 66, 44 46 C 62 24, 92 30, 124 38 C 152 45, 172 40, 190 28" />
-        <path d="M22 70 C 62 58, 122 62, 178 50" />
-      </svg>
-      <div aria-hidden="true" className="absolute bottom-6 right-6 flex h-12 w-7 items-start justify-center rounded-full border border-[#f4f4f1]/30 p-1.5">
-        <span className="scroll-cue size-1.5 rounded-full bg-[#f4f4f1]/70" />
       </div>
     </div>
   )
