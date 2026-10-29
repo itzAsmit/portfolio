@@ -344,15 +344,16 @@
 }
 
 /* Portrait screens: a cover crop would show a narrow slice of the photograph, so the photo
-   box becomes the photograph's own aspect along the top of the stage — the whole picture
-   shows, framed by the night sky, with the name beneath it. The wall mask, the trail
-   stencil and the focus point all register against this same box, so their geometry stays
-   aligned with the picture. */
+   box becomes the photograph's own aspect — the whole picture shows, framed by the night
+   sky. The wall mask, the trail stencil and the focus point all register against this same
+   box, so their geometry stays aligned with the picture. `[data-hero]` selects between
+   preview layouts: strip (default), card, overlap, bottom. */
 @media (max-aspect-ratio: 4/5) {
   .hero-frame .hero-image:not(.full-bleed),
   .star-trails .hero-image:not(.full-bleed) {
     inset: 0 0 auto;
-    height: 56.3vw;
+    height: auto;
+    aspect-ratio: 1672 / 941;
   }
 
   .hero-frame .cover-layer {
@@ -361,13 +362,54 @@
     height: 100%;
   }
 
+  .cover-copy {
+    padding-bottom: 1.75rem;
+  }
+
+  /* Default strip: photo edge to edge at the top, name beneath it, copy at the base. */
   .cover-type {
     top: calc(56.3vw + 1.5rem);
     bottom: auto;
   }
 
-  .cover-copy {
-    padding-bottom: 1.75rem;
+  /* Framed print: the photo as a rounded card under the header, name below the card. */
+  [data-hero='card'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='card'] .star-trails .hero-image:not(.full-bleed) {
+    inset: calc(var(--header-height) + 1rem) 1.25rem auto;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgb(244 244 241 / 0.14);
+  }
+
+  [data-hero='card'] .cover-type {
+    top: calc(var(--header-height) + 1rem + (100vw - 2.5rem) / 1.776 + 1.5rem);
+  }
+
+  /* Editorial overlap: the name rides across the photo's lower edge, sky takes the rest. */
+  [data-hero='overlap'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='overlap'] .star-trails .hero-image:not(.full-bleed) {
+    inset: calc(var(--header-height) + 2.75rem) 0 auto;
+  }
+
+  [data-hero='overlap'] .cover-type {
+    top: calc(var(--header-height) + 2.75rem + 56.3vw - 13vw);
+    bottom: auto;
+    z-index: 3;
+  }
+
+  /* Horizon: type up top, the photograph anchored to the base of the stage. */
+  [data-hero='bottom'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='bottom'] .star-trails .hero-image:not(.full-bleed) {
+    inset: auto 0 0;
+  }
+
+  [data-hero='bottom'] .cover-type {
+    top: calc(var(--header-height) + 1.5rem);
+    bottom: auto;
+  }
+
+  [data-hero='bottom'] .cover-copy {
+    padding-bottom: calc(56.3vw + 1.25rem);
   }
 }
 
