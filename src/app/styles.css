@@ -343,6 +343,34 @@
   }
 }
 
+/* Portrait screens: a cover crop would show a narrow slice of the photograph, so the photo
+   box becomes the photograph's own aspect along the top of the stage — the whole picture
+   shows, framed by the night sky, with the name beneath it. The wall mask, the trail
+   stencil and the focus point all register against this same box, so their geometry stays
+   aligned with the picture. */
+@media (max-aspect-ratio: 4/5) {
+  .hero-frame .hero-image:not(.full-bleed),
+  .star-trails .hero-image:not(.full-bleed) {
+    inset: 0 0 auto;
+    height: 56.3vw;
+  }
+
+  .hero-frame .cover-layer {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-type {
+    top: calc(56.3vw + 1.5rem);
+    bottom: auto;
+  }
+
+  .cover-copy {
+    padding-bottom: 1.75rem;
+  }
+}
+
 /* Cover notes: reproduces the photo's cover crop (object-position center) so notes pin to photo fractions. */
 .note-fit {
   width: max(100cqw, 100cqh * 1672 / 941);
