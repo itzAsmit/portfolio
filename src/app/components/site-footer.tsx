@@ -112,23 +112,18 @@ export function SiteFooter() {
         <div className="h-[clamp(8rem,24vw,14rem)] w-full max-w-6xl">
           <TechText text={'HAVE\u2002AN\u2002INTERESTING\u2002IDEA?'} fontWeight={820} fontSize={150} />
         </div>
-        <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground md:mt-4">
-          Let&rsquo;s talk at the <span className="text-primary">peak</span>
-        </p>
-        <a href={`mailto:${email}`} className="email-cta mt-5 md:mt-6">
-          <span className="email-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" className="size-6">
-              <rect x="2.5" y="7.5" width="19" height="12" rx="2.2" />
-              <g className="mail-letter">
-                <rect x="6.5" y="10.6" width="11" height="8" rx="1" />
-                <path d="M9 13.2h6" />
-                <path d="M9 15.6h3.6" />
-              </g>
-              <path className="mail-flap" d="M3.4 9.2 12 15.2 20.6 9.2Z" />
-              <path className="mail-pocket" d="M2.5 12 12 18l9.5-6v5.3a2.2 2.2 0 0 1-2.2 2.2H4.7a2.2 2.2 0 0 1-2.2-2.2Z" />
-            </svg>
+        <p className="kicker mt-3 md:mt-4">
+          <span className="kicker-rule" aria-hidden="true" />
+          <span>
+            Let&rsquo;s talk at the <span className="text-primary">peak</span>
           </span>
-          <span>{email}</span>
+          <span className="kicker-rule kicker-rule-end" aria-hidden="true" />
+        </p>
+        <a
+          href={`mailto:${email}`}
+          className="email-sweep mt-5 text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground md:mt-6"
+        >
+          {email}
         </a>
         <ul className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
           {profiles.map((profile) => (
