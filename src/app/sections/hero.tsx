@@ -79,14 +79,14 @@ function HeroStage() {
       <div className="cover-copy relative z-10 flex h-full flex-col justify-end px-5 pt-[calc(var(--header-height)+1.25rem)] text-[#f4f4f1] md:px-10 md:pb-10">
         <div className="hero-lead md:w-[26rem]">
           <div className="hero-fade">
-            <p className="mb-4 text-[15px] font-semibold md:text-base">
+            <p className="mb-4 text-[17px] font-semibold md:text-base">
               Computer Science &amp; Engineering student at{' '}
               <span className="whitespace-nowrap">
                 Academy of Technology
               </span>
             </p>
             <p className="text-lg leading-snug md:text-[1.35rem]">I build software, explore emerging technologies, and bring developer communities together.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 hidden flex-wrap gap-3 md:flex">
               <FlowButton to="#contact" text="Connect with me" tone="light" />
             </div>
           </div>
