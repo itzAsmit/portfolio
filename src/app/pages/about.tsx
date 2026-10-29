@@ -43,7 +43,7 @@ export function AboutPage() {
       <div aria-hidden="true" className="pointer-events-none absolute -top-40 right-[-10%] -z-10 size-[34rem] rounded-full bg-primary/20 blur-[130px]" />
       <div aria-hidden="true" className="pointer-events-none absolute top-[42%] left-[-14%] -z-10 size-[28rem] rounded-full bg-primary/10 blur-[130px]" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-[-8%] right-[5%] -z-10 size-[26rem] rounded-full bg-primary/10 blur-[130px]" />
-      <section className="grid gap-12 px-5 pt-[calc(var(--header-height)+clamp(1.5rem,4vh,3rem))] md:grid-cols-12 md:gap-8 md:px-10">
+      <section className="grid gap-8 px-5 pt-[calc(var(--header-height)+clamp(1.5rem,4vh,3rem))] md:grid-cols-12 md:gap-8 md:px-10">
         <div className="flex flex-col justify-end md:col-span-7">
           <p className="mb-7 flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
             <span aria-hidden="true" className="size-[7px] animate-pulse rounded-full bg-primary" />
@@ -52,7 +52,7 @@ export function AboutPage() {
           <PageTitle className="max-w-[11ch] text-[clamp(2.75rem,6.4vw,7rem)] leading-[0.86]">{about.title}</PageTitle>
           <p className="mt-10 max-w-[44ch] text-[clamp(1.1rem,1.55vw,1.45rem)] leading-snug">{about.intro}</p>
         </div>
-        <figure className="about-photo order-first -mx-5 overflow-hidden rounded-none md:mx-0 md:order-none md:rounded-[20px] md:col-span-5 md:col-start-8" role="img" aria-label="Asmit Biswas, printed as a halftone — move the cursor over it to reveal the photo">
+        <figure className="about-photo order-first ml-auto mr-5 mt-2 w-[74%] overflow-hidden rounded-[22px] border border-border md:mx-0 md:order-none md:mt-0 md:w-auto md:rounded-[20px] md:border-0 md:col-span-5 md:col-start-8" role="img" aria-label="Asmit Biswas, printed as a halftone — move the cursor over it to reveal the photo">
           <HalftoneReveal
             src={cutout}
             fit="contain"
