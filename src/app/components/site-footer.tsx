@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { TypographyVortexCanvas } from '@designcodeio/threeui/components/TypographyVortexCanvas'
 import { siGithub, siInstagram, siX } from 'simple-icons'
-import '@fontsource/homemade-apple/latin-400.css'
 import { gsap, motionOk } from '@/lib/gsap'
 import { useTheme, type Theme } from '@/lib/theme'
 import { email, profiles } from '@/lib/content'
