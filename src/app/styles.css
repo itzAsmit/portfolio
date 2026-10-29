@@ -363,8 +363,18 @@
     height: 100%;
   }
 
+  /* The copy follows the name instead of hugging the base, so the leftover stage height
+     pools at the bottom of the night sky rather than splitting the layout mid-screen. */
   .cover-copy {
+    --name-top: calc(75vw + 1.5rem);
+    justify-content: flex-start;
+    padding-top: calc(var(--name-top) + 25.6vw + 1.5rem);
     padding-bottom: 1.75rem;
+  }
+
+  .cover-type {
+    top: var(--name-top);
+    bottom: auto;
   }
 
   /* Tighter framing: the photo layers zoom about his face, and the trail stencil maps the
@@ -387,13 +397,11 @@
     }
   }
 
-  /* Default strip: photo edge to edge at the top, name beneath it, copy at the base. */
-  .cover-type {
-    top: calc(75vw + 1.5rem);
-    bottom: auto;
+  /* Framed print: the photo as a rounded card under the header, name below the card. */
+  [data-hero='card'] .cover-copy {
+    --name-top: calc(var(--header-height) + 1rem + (100vw - 2.5rem) * 0.75 + 1.5rem);
   }
 
-  /* Framed print: the photo as a rounded card under the header, name below the card. */
   [data-hero='card'] .hero-frame .hero-image:not(.full-bleed),
   [data-hero='card'] .star-trails .hero-image:not(.full-bleed) {
     inset: calc(var(--header-height) + 1rem) 1.25rem auto;
@@ -407,33 +415,34 @@
   }
 
   /* Editorial overlap: the name rides across the photo's lower edge, sky takes the rest. */
+  [data-hero='overlap'] .cover-copy {
+    --name-top: calc(var(--header-height) + 2.75rem + 62vw);
+  }
+
   [data-hero='overlap'] .hero-frame .hero-image:not(.full-bleed),
   [data-hero='overlap'] .star-trails .hero-image:not(.full-bleed) {
     inset: calc(var(--header-height) + 2.75rem) 0 auto;
   }
 
   [data-hero='overlap'] .cover-type {
-    top: calc(var(--header-height) + 2.75rem + 62vw);
-    bottom: auto;
     z-index: 3;
   }
 
   /* Horizon: type up top, the photograph anchored to the base of the stage. */
+  [data-hero='bottom'] .cover-copy {
+    --name-top: calc(var(--header-height) + 1.5rem);
+  }
+
   [data-hero='bottom'] .hero-frame .hero-image:not(.full-bleed),
   [data-hero='bottom'] .star-trails .hero-image:not(.full-bleed) {
     inset: auto 0 0;
   }
 
-  [data-hero='bottom'] .cover-type {
-    top: calc(var(--header-height) + 1.5rem);
-    bottom: auto;
-  }
-
-  [data-hero='bottom'] .cover-copy {
-    padding-bottom: calc(75vw + 1.25rem);
-  }
-
   /* Viewfinder: a centered card with camera corner brackets floating outside its edges. */
+  [data-hero='frame'] .cover-copy {
+    --name-top: calc(var(--header-height) + 2.5rem + (100vw - 2.5rem) * 0.75 + 1.75rem);
+  }
+
   [data-hero='frame'] .hero-frame .hero-image:not(.full-bleed),
   [data-hero='frame'] .star-trails .hero-image:not(.full-bleed) {
     inset: calc(var(--header-height) + 2.5rem) 1.25rem auto;
@@ -454,16 +463,16 @@
   }
 
   /* White-mat print: the photograph floats in a paper border, like a hand-printed photo. */
+  [data-hero='print'] .cover-copy {
+    --name-top: calc(var(--header-height) + 1.5rem + (100vw - 4rem) * 0.75 + 2rem + 1.5rem);
+  }
+
   [data-hero='print'] .hero-frame .hero-image:not(.full-bleed),
   [data-hero='print'] .star-trails .hero-image:not(.full-bleed) {
     inset: calc(var(--header-height) + 1.5rem) 2rem auto;
     overflow: hidden;
     border-radius: 8px;
     border: 10px solid #f4f4f1;
-  }
-
-  [data-hero='print'] .cover-type {
-    top: calc(var(--header-height) + 1.5rem + (100vw - 4rem) * 0.75 + 2rem + 1.5rem);
   }
 
   /* Arch: the strip with a full arch cut into its top, gallery-wall style. */
