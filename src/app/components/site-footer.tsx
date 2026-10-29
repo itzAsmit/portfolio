@@ -1,8 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { TypographyVortexCanvas } from '@designcodeio/threeui/components/TypographyVortexCanvas'
+import { siGithub, siInstagram, siX } from 'simple-icons'
 import { gsap, motionOk } from '@/lib/gsap'
 import { useTheme, type Theme } from '@/lib/theme'
+import { email, profiles } from '@/lib/content'
+import { Magnetic } from '@/components/magnetic'
 import TechText from '@/components/ui/tech-text'
+
+// Neither simple-icons nor lucide ships the LinkedIn mark any more, so its path is inlined.
+const linkedInPath =
+  'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'
+
+const brandPaths: Record<string, string> = {
+  Instagram: siInstagram.path,
+  LinkedIn: linkedInPath,
+  GitHub: siGithub.path,
+  X: siX.path,
+}
 
 // Building the vortex's text rings blocks the main thread for a moment, so it starts only once the footer is on
 // screen and scrolling has paused, then fades in; pages read without reaching the footer never pay for it.
@@ -97,6 +111,37 @@ export function SiteFooter() {
         <h2 id="contact-title" className="sr-only">Have an interesting idea?</h2>
         <div className="h-[clamp(8rem,24vw,14rem)] w-full max-w-6xl">
           <TechText text={'HAVE\u2002AN\u2002INTERESTING\u2002IDEA?'} fontWeight={820} fontSize={150} />
+        </div>
+        <div className="mt-8 flex flex-col items-center gap-6 md:mt-10">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">
+            Let&rsquo;s talk at the <span className="text-primary">peak</span>
+          </p>
+          <a
+            href={`mailto:${email}`}
+            className="email-sweep text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground"
+          >
+            {email}
+          </a>
+          <ul className="flex flex-wrap items-center justify-center gap-2.5">
+            {profiles.map((profile) => (
+              <li key={profile.label}>
+                <Magnetic strength={0.25}>
+                  <a
+                    href={profile.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${profile.label} — ${profile.handle}`}
+                    className="social-pill"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5">
+                      <path d={brandPaths[profile.label]} />
+                    </svg>
+                    <span>{profile.handle}</span>
+                  </a>
+                </Magnetic>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

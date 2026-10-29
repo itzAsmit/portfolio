@@ -175,6 +175,52 @@
   width: 100%;
 }
 
+/* Contact footer: sweeping underline for the mailto link, glass pills for social handles. */
+.email-sweep {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.45s var(--ease-out-expo);
+}
+
+.email-sweep:hover,
+.email-sweep:focus-visible {
+  background-size: 100% 2px;
+}
+
+.social-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: rgb(255 255 255 / 0.55);
+  padding: 0.5rem 1.05rem;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform 0.3s var(--ease-out-expo),
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.social-pill:hover,
+.social-pill:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  color: var(--primary);
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+[data-theme='dark'] .social-pill {
+  background: rgb(255 255 255 / 0.05);
+}
+
 /* Hero: the portrait becomes a window, and the statement arrives around it. */
 .hero-frame {
   clip-path: inset(0% 0% 0% 0% round 0px);

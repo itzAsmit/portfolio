@@ -34,10 +34,13 @@ export const projects = sourceProjects.slice(0, 3).map((project, index) => {
 
 export type { CaseStudy, Endorsement, Film, Flow, Metric, Project, Quote, Shot } from './projects'
 export const photos = { cameraPortrait, cameraChip, candid, subject, benchScene }
-export const email = 'godofdeath416@gmail.com'
+export const email = 'contact@asmitrishi.dev'
 export const phone = { label: '', href: '' }
 export const profiles = [
-  { label: 'Instagram', href: 'https://www.instagram.com/asmittzzz/' },
+  { label: 'Instagram', handle: '@asmittzzz', href: 'https://www.instagram.com/asmittzzz/' },
+  { label: 'LinkedIn', handle: 'asmittzzz', href: 'https://www.linkedin.com/in/asmittzzz/' },
+  { label: 'GitHub', handle: 'itzAsmit', href: 'https://github.com/itzAsmit' },
+  { label: 'X', handle: 'aizenrishiii', href: 'https://x.com/aizenrishiii' },
 ]
 
 export function projectById(id: ProjectId) {
