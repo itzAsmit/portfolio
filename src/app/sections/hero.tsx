@@ -104,10 +104,6 @@ function HeroStage() {
 function HeroMobile() {
   return (
     <div className="hero-mobile relative overflow-hidden bg-[#0a0a0c] pb-14 text-[#f4f4f1] lg:hidden">
-      {/* Soft white blooms, out of focus behind everything. */}
-      <div aria-hidden="true" className="hero-mobile-bloom pointer-events-none absolute -right-28 -top-28 size-80 rounded-full bg-[#f4f4f1]/[0.07] blur-3xl" />
-      <div aria-hidden="true" className="hero-mobile-bloom pointer-events-none absolute -bottom-44 -right-28 size-[27rem] rounded-full bg-[#f4f4f1]/[0.09] blur-3xl" />
-
       <div className="relative z-10 px-5 pt-[calc(var(--header-height)+1.75rem)]">
         <p className="hero-mobile-reveal flex items-center gap-3 text-[21px] text-[#f4f4f1]/75" style={{ fontFamily: 'var(--font-hand)' }}>
           <span aria-hidden="true" className="h-px w-8 bg-[#f4f4f1]/70" />
@@ -274,7 +270,6 @@ export function Hero() {
             time.textContent = clock(state.length * exposureSeconds)
           }
           gsap.set(photo, { filter: 'brightness(0.12) saturate(0.6)' })
-          gsap.set(q('.hero-mobile-bloom'), { opacity: 0 })
           gsap.set(q('.hero-mobile-reveal'), { y: 24, opacity: 0 })
           gsap.set(finder, { display: 'block', opacity: 0 })
           gsap.set(focus, { opacity: 1 })
@@ -302,7 +297,6 @@ export function Hero() {
             .to(focus, { opacity: 0, duration: 0.3 }, 0.5)
             .to(state, { length: 1, duration: 1.8, ease: 'power2.inOut', onUpdate: grow }, 0.4)
             .to(photo, { filter: 'brightness(1) saturate(1)', duration: 1.6, ease: 'power1.inOut', clearProps: 'filter' }, 0.5)
-            .to(q('.hero-mobile-bloom'), { opacity: 1, duration: 1.4, ease: 'power1.inOut' }, 0.7)
             .to(q('.hero-mobile .viewfinder-shutter'), { opacity: 1, duration: 0.07, ease: 'none' }, 2.15)
             .to(q('.hero-mobile .viewfinder-shutter'), { opacity: 0, duration: 0.25, ease: 'power1.out' }, 2.3)
             .to(finder, { autoAlpha: 0, duration: 0.5 }, 2.4)
