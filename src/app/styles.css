@@ -344,16 +344,17 @@
 }
 
 /* Portrait screens: a cover crop would show a narrow slice of the photograph, so the photo
-   box becomes the photograph's own aspect — the whole picture shows, framed by the night
-   sky. The wall mask, the trail stencil and the focus point all register against this same
-   box, so their geometry stays aligned with the picture. `[data-hero]` selects between
-   preview layouts: strip (default), card, overlap, bottom. */
+   box is presented in a classic 4:3 frame (its sides extend past the frame's own 1.78
+   aspect, so the cover crop trims the dusk edges). The wall mask, the trail stencil and the
+   focus point all register against this same box, so their geometry stays aligned.
+   `[data-hero]` selects between preview layouts: strip (default), card, overlap, bottom,
+   frame, print, arch. */
 @media (max-aspect-ratio: 4/5) {
   .hero-frame .hero-image:not(.full-bleed),
   .star-trails .hero-image:not(.full-bleed) {
     inset: 0 0 auto;
     height: auto;
-    aspect-ratio: 1672 / 941;
+    aspect-ratio: 4 / 3;
   }
 
   .hero-frame .cover-layer {
@@ -368,7 +369,7 @@
 
   /* Default strip: photo edge to edge at the top, name beneath it, copy at the base. */
   .cover-type {
-    top: calc(56.3vw + 1.5rem);
+    top: calc(75vw + 1.5rem);
     bottom: auto;
   }
 
@@ -382,7 +383,7 @@
   }
 
   [data-hero='card'] .cover-type {
-    top: calc(var(--header-height) + 1rem + (100vw - 2.5rem) / 1.776 + 1.5rem);
+    top: calc(var(--header-height) + 1rem + (100vw - 2.5rem) * 0.75 + 1.5rem);
   }
 
   /* Editorial overlap: the name rides across the photo's lower edge, sky takes the rest. */
@@ -392,7 +393,7 @@
   }
 
   [data-hero='overlap'] .cover-type {
-    top: calc(var(--header-height) + 2.75rem + 56.3vw - 13vw);
+    top: calc(var(--header-height) + 2.75rem + 62vw);
     bottom: auto;
     z-index: 3;
   }
@@ -409,7 +410,51 @@
   }
 
   [data-hero='bottom'] .cover-copy {
-    padding-bottom: calc(56.3vw + 1.25rem);
+    padding-bottom: calc(75vw + 1.25rem);
+  }
+
+  /* Viewfinder: a centered card with camera corner brackets floating outside its edges. */
+  [data-hero='frame'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='frame'] .star-trails .hero-image:not(.full-bleed) {
+    inset: calc(var(--header-height) + 2.5rem) 1.25rem auto;
+  }
+
+  [data-hero='frame'] .cover-type {
+    top: calc(var(--header-height) + 2.5rem + (100vw - 2.5rem) * 0.75 + 1.75rem);
+  }
+
+  .hero-photo-frame {
+    display: none;
+  }
+
+  [data-hero='frame'] .hero-photo-frame {
+    display: block;
+    inset: calc(var(--header-height) + 2.5rem) 1.25rem auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* White-mat print: the photograph floats in a paper border, like a hand-printed photo. */
+  [data-hero='print'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='print'] .star-trails .hero-image:not(.full-bleed) {
+    inset: calc(var(--header-height) + 1.5rem) 2rem auto;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 10px solid #f4f4f1;
+  }
+
+  [data-hero='print'] .cover-type {
+    top: calc(var(--header-height) + 1.5rem + (100vw - 4rem) * 0.75 + 2rem + 1.5rem);
+  }
+
+  /* Arch: the strip with a full arch cut into its top, gallery-wall style. */
+  [data-hero='arch'] .hero-frame .hero-image:not(.full-bleed),
+  [data-hero='arch'] .star-trails .hero-image:not(.full-bleed) {
+    overflow: hidden;
+    border-radius: 50% 50% 0 0 / 32% 32% 0 0;
+  }
+
+  [data-hero='arch'] .cover-type {
+    top: calc(75vw + 1.5rem);
   }
 }
 

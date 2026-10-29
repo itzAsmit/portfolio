@@ -67,6 +67,13 @@ function HeroStage() {
           <div className="hero-scrim pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(10_16_11/0.4)_0%,rgb(10_16_11/0)_16%,rgb(10_16_11/0)_52%,rgb(10_16_11/0.85)_100%)]" />
           <NotePins />
           <FocusPoint />
+          {/* Corner brackets for the `frame` hero preview layout (portrait screens only). */}
+          <div className="hero-photo-frame pointer-events-none absolute z-[4]" aria-hidden="true">
+            <span className="absolute size-7 -translate-x-[0.9rem] -translate-y-[0.9rem] border-l-2 border-t-2 border-[#f4f4f1]/85" />
+            <span className="absolute right-0 top-0 size-7 translate-x-[0.9rem] -translate-y-[0.9rem] border-r-2 border-t-2 border-[#f4f4f1]/85" />
+            <span className="absolute bottom-0 left-0 size-7 -translate-x-[0.9rem] translate-y-[0.9rem] border-b-2 border-l-2 border-[#f4f4f1]/85" />
+            <span className="absolute bottom-0 right-0 size-7 translate-x-[0.9rem] translate-y-[0.9rem] border-b-2 border-r-2 border-[#f4f4f1]/85" />
+          </div>
         </div>
       </div>
       <div className="cover-copy relative z-10 flex h-full flex-col justify-end px-5 pt-[calc(var(--header-height)+1.25rem)] text-[#f4f4f1] md:px-10 md:pb-10">
