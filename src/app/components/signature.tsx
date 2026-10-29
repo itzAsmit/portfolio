@@ -1,14 +1,8 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-const NAME = 'Asmit Biswas'
-
-// The name writes itself in once the footer scrolls into view: each letter traces its
-// outline (SVG stroke dash), then the ink "settles" as the fill fades in and the stroke
-// fades out, and a flourish underlines the finished signature. Letters draw with a
-// generous dash length because glyph outline lengths vary; the flourish path uses
-// pathLength=1 so its dash math is normalized.
-const STAGGER = 0.085
-
+// The name reveals like it is being written: a clip wipes across the filled script in pen
+// rhythm (with a short lift between first and last name), then a flourish underlines it.
+// Starts once the footer scrolls into view and the script face is actually loaded.
 export function Signature({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const [live, setLive] = useState(false)
@@ -28,21 +22,16 @@ export function Signature({ className }: { className?: string }) {
 
   return (
     <div ref={ref} className={live ? 'signature is-live' : 'signature'}>
-      <svg viewBox="0 0 560 170" className={className} role="img" aria-label="Signature: Asmit Biswas">
-        <text x="280" y="82" textAnchor="middle" dominantBaseline="central" aria-hidden="true">
-          {NAME.split('').map((char, index) => (
-            <tspan key={index} className="signature-char" style={{ '--d': `${index * STAGGER}s` } as CSSProperties}>
-              {char === ' ' ? '\u00A0' : char}
-            </tspan>
-          ))}
+      <svg
+        viewBox="0 0 560 170"
+        className={className ? `signature-svg ${className}` : 'signature-svg'}
+        role="img"
+        aria-label="Signature: Asmit Biswas"
+      >
+        <text x="280" y="82" textAnchor="middle" dominantBaseline="central" className="signature-name" aria-hidden="true">
+          Asmit Biswas
         </text>
-        <path
-          className="signature-flourish"
-          style={{ '--d': `${NAME.length * STAGGER + 0.3}s` } as CSSProperties}
-          d="M34 140 C 160 156, 400 122, 526 140"
-          pathLength={1}
-          aria-hidden="true"
-        />
+        <path className="signature-flourish" d="M34 140 C 160 156, 400 122, 526 140" pathLength={1} aria-hidden="true" />
       </svg>
     </div>
   )
