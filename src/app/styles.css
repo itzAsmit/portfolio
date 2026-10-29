@@ -221,6 +221,67 @@
   background: rgb(255 255 255 / 0.05);
 }
 
+/* Contact footer: the signature traces itself letter by letter when scrolled into view,
+   then the ink settles (fill fades in, stroke fades out) and a flourish sweeps underneath. */
+.signature-char {
+  font-family: 'Great Vibes', cursive;
+  font-size: 84px;
+  fill: currentColor;
+  fill-opacity: 0;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+}
+
+.signature.is-live .signature-char {
+  animation:
+    sig-draw 0.65s ease-out forwards,
+    sig-ink 0.7s ease-out forwards;
+  animation-delay: var(--d), calc(var(--d) + 0.5s);
+}
+
+@keyframes sig-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sig-ink {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
+.signature-flourish {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.5;
+}
+
+.signature.is-live .signature-flourish {
+  animation: sig-draw 0.8s var(--ease-out-expo) forwards;
+  animation-delay: var(--d);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-char {
+    fill-opacity: 1;
+    stroke: none;
+  }
+
+  .signature-flourish {
+    stroke-dashoffset: 0;
+  }
+}
+
 /* Hero: the portrait becomes a window, and the statement arrives around it. */
 .hero-frame {
   clip-path: inset(0% 0% 0% 0% round 0px);

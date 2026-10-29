@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { TypographyVortexCanvas } from '@designcodeio/threeui/components/TypographyVortexCanvas'
 import { siGithub, siInstagram, siX } from 'simple-icons'
+import '@fontsource/great-vibes/latin-400.css'
 import { gsap, motionOk } from '@/lib/gsap'
 import { useTheme, type Theme } from '@/lib/theme'
 import { email, profiles } from '@/lib/content'
 import { Magnetic } from '@/components/magnetic'
+import { Signature } from '@/components/signature'
 import TechText from '@/components/ui/tech-text'
 
 // Neither simple-icons nor lucide ships the LinkedIn mark any more, so its path is inlined.
@@ -112,37 +114,36 @@ export function SiteFooter() {
         <div className="h-[clamp(8rem,24vw,14rem)] w-full max-w-6xl">
           <TechText text={'HAVE\u2002AN\u2002INTERESTING\u2002IDEA?'} fontWeight={820} fontSize={150} />
         </div>
-        <div className="mt-8 flex flex-col items-center gap-6 md:mt-10">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">
-            Let&rsquo;s talk at the <span className="text-primary">peak</span>
-          </p>
-          <a
-            href={`mailto:${email}`}
-            className="email-sweep text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground"
-          >
-            {email}
-          </a>
-          <ul className="flex flex-wrap items-center justify-center gap-2.5">
-            {profiles.map((profile) => (
-              <li key={profile.label}>
-                <Magnetic strength={0.25}>
-                  <a
-                    href={profile.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${profile.label} — ${profile.handle}`}
-                    className="social-pill"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5">
-                      <path d={brandPaths[profile.label]} />
-                    </svg>
-                    <span>{profile.handle}</span>
-                  </a>
-                </Magnetic>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.35em] text-muted-foreground md:mt-4">
+          Let&rsquo;s talk at the <span className="text-primary">peak</span>
+        </p>
+        <Signature className="mt-1 w-[min(78vw,24rem)] md:mt-2" />
+        <a
+          href={`mailto:${email}`}
+          className="email-sweep mt-3 text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-tight text-foreground md:mt-4"
+        >
+          {email}
+        </a>
+        <ul className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
+          {profiles.map((profile) => (
+            <li key={profile.label}>
+              <Magnetic strength={0.25}>
+                <a
+                  href={profile.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${profile.label} — ${profile.handle}`}
+                  className="social-pill"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5">
+                    <path d={brandPaths[profile.label]} />
+                  </svg>
+                  <span>{profile.handle}</span>
+                </a>
+              </Magnetic>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="relative z-10 px-5 pb-6 pt-2 text-[13px] leading-snug tracking-[0.04em] text-muted-foreground md:px-10">
